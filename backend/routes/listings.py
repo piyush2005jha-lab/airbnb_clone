@@ -39,6 +39,10 @@ router = APIRouter(
 # =========================================================
 
 @router.get(
+    "",
+    response_model=list[ListingResponse],
+)
+@router.get(
     "/",
     response_model=list[ListingResponse],
 )
