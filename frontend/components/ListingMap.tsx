@@ -1,42 +1,62 @@
 "use client";
 
 import dynamic from "next/dynamic";
-
-/*
-  Leaflet touches `window`, so it can only run in the browser.
-  This client component is the boundary that makes `ssr: false`
-  legal (Server Components can render this file directly, they
-  just can't call `dynamic(..., { ssr: false })` themselves).
-*/
-const MapView = dynamic(() => import("./MapView"), {
-  ssr: false,
-  loading: () => (
-    <div className="airbnb-map">
-      <div className="map-fallback">
-        <span>🗺️</span>
-        <strong>Loading map…</strong>
-      </div>
-    </div>
-  ),
-});
+import type { Listing } from "@/lib/api";
 
 interface ListingMapProps {
-  location: string;
-  latitude?: number | null;
-  longitude?: number | null;
+  listings: Listing[];
 }
 
+const MapView = dynamic(
+  () => import("./MapView"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="airbnb-map">
+        <div className="map-fallback">
+          <span>🗺️</span>
+          <strong>Loading map…</strong>
+        </div>
+      </div>
+    ),
+  }
+);
+
 export default function ListingMap({
-  location,
-  latitude,
-  longitude,
+  listings,
 }: ListingMapProps) {
+  const validListings = listings.filter(
+    (listing) =>
+      listing.latitude !== null &&
+      listing.longitude !== null
+  );
+
+  const firstListing =
+    validListings[0] ?? listings[0];
+
+  const nearbyPrices = validListings.map(
+    (listing) => ({
+      price: `₹${listing.price_per_night}`,
+      position: [
+        listing.latitude!,
+        listing.longitude!,
+      ] as [number, number],
+    })
+  );
+
   return (
     <MapView
-      location={location}
-      latitude={latitude ?? undefined}
-      longitude={longitude ?? undefined}
-      zoom={14}
+      location={
+        firstListing?.location ?? "India"
+      }
+      latitude={
+        firstListing?.latitude ?? undefined
+      }
+      longitude={
+        firstListing?.longitude ?? undefined
+      }
+      zoom={12}
+      nearbyPrices={nearbyPrices}
     />
   );
 }

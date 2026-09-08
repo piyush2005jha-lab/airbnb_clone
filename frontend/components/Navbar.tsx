@@ -3,8 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 interface NavbarProps {
-  activeCategory: string;
-  onCategoryChange: (category: string) => void;
+  activeCategory?: string;
+  onCategoryChange?: (category: string) => void;
 }
 
 const categories = [
@@ -27,8 +27,8 @@ const categories = [
 ];
 
 export default function Navbar({
-  activeCategory,
-  onCategoryChange,
+  activeCategory = "All",
+  onCategoryChange = () => {},
 }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -159,7 +159,6 @@ export default function Navbar({
 
   return (
     <header className="navbar">
-
       <div className="navbar-inner">
 
         {/* ======================================
@@ -174,9 +173,7 @@ export default function Navbar({
           }
           aria-label="Airbnb home"
         >
-
           <span className="airbnb-logo-mark">
-
             <svg
               viewBox="0 0 32 32"
               aria-hidden="true"
@@ -191,25 +188,20 @@ export default function Navbar({
                 r="2.2"
               />
             </svg>
-
           </span>
 
           <span className="airbnb-logo-text">
             airbnb
           </span>
-
         </button>
-
 
         {/* ======================================
             CATEGORIES
         ====================================== */}
 
         <nav className="desktop-nav">
-
           {categories.map(
             (category) => {
-
               const active =
                 activeCategory ===
                 category.name;
@@ -229,7 +221,6 @@ export default function Navbar({
                     )
                   }
                 >
-
                   <span className="nav-category-icon">
                     {category.icon}
                   </span>
@@ -237,15 +228,11 @@ export default function Navbar({
                   <span>
                     {category.name}
                   </span>
-
                 </button>
               );
-
             }
           )}
-
         </nav>
-
 
         {/* ======================================
             RIGHT
@@ -263,7 +250,6 @@ export default function Navbar({
             Switch to hosting
           </button>
 
-
           {/* PROFILE */}
 
           <button
@@ -280,7 +266,6 @@ export default function Navbar({
           >
             P
           </button>
-
 
           {/* MENU */}
 
@@ -300,20 +285,16 @@ export default function Navbar({
             aria-label="Open menu"
             aria-expanded={menuOpen}
           >
-
             <span />
             <span />
             <span />
-
           </button>
-
 
           {/* ==================================
               DROPDOWN
           ================================== */}
 
           {menuOpen && (
-
             <div
               className="profile-menu"
               role="menu"
@@ -328,7 +309,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ♡
                 </span>
@@ -336,9 +316,7 @@ export default function Navbar({
                 <span>
                   Wishlists
                 </span>
-
               </button>
-
 
               {/* TRIPS */}
 
@@ -349,7 +327,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ♧
                 </span>
@@ -357,9 +334,7 @@ export default function Navbar({
                 <span>
                   Trips
                 </span>
-
               </button>
-
 
               {/* MESSAGES */}
 
@@ -370,7 +345,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ▢
                 </span>
@@ -378,9 +352,7 @@ export default function Navbar({
                 <span>
                   Messages
                 </span>
-
               </button>
-
 
               {/* PROFILE */}
 
@@ -391,7 +363,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ◎
                 </span>
@@ -399,12 +370,9 @@ export default function Navbar({
                 <span>
                   Profile
                 </span>
-
               </button>
 
-
               <div className="menu-divider" />
-
 
               {/* NOTIFICATIONS */}
 
@@ -415,7 +383,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ♧
                 </span>
@@ -423,9 +390,7 @@ export default function Navbar({
                 <span>
                   Notifications
                 </span>
-
               </button>
-
 
               {/* ACCOUNT */}
 
@@ -436,7 +401,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ⚙
                 </span>
@@ -444,9 +408,7 @@ export default function Navbar({
                 <span>
                   Account settings
                 </span>
-
               </button>
-
 
               {/* LANGUAGE */}
 
@@ -457,7 +419,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ◎
                 </span>
@@ -465,9 +426,7 @@ export default function Navbar({
                 <span>
                   Languages & currency
                 </span>
-
               </button>
-
 
               {/* HELP */}
 
@@ -478,7 +437,6 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span className="menu-icon">
                   ?
                 </span>
@@ -486,12 +444,9 @@ export default function Navbar({
                 <span>
                   Help Centre
                 </span>
-
               </button>
 
-
               <div className="menu-divider" />
-
 
               {/* DARK MODE */}
 
@@ -502,7 +457,6 @@ export default function Navbar({
                   toggleDarkMode
                 }
               >
-
                 <span className="menu-icon">
                   {darkMode
                     ? "☀"
@@ -524,12 +478,9 @@ export default function Navbar({
                 >
                   <span />
                 </span>
-
               </button>
 
-
               <div className="menu-divider" />
-
 
               {/* BECOME A HOST */}
 
@@ -540,7 +491,6 @@ export default function Navbar({
                   handleCategory("Homes")
                 }
               >
-
                 <div className="become-host-content">
 
                   <strong>
@@ -558,9 +508,7 @@ export default function Navbar({
                 <span className="host-emoji">
                   🧑‍💼
                 </span>
-
               </button>
-
 
               {/* REFER */}
 
@@ -571,13 +519,10 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span>
                   Refer a host
                 </span>
-
               </button>
-
 
               {/* CO HOST */}
 
@@ -588,16 +533,12 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span>
                   Find a co-host
                 </span>
-
               </button>
 
-
               <div className="menu-divider" />
-
 
               {/* LOG OUT */}
 
@@ -608,21 +549,17 @@ export default function Navbar({
                   setMenuOpen(false)
                 }
               >
-
                 <span>
                   Log out
                 </span>
-
               </button>
 
             </div>
-
           )}
 
         </div>
 
       </div>
-
     </header>
   );
 }

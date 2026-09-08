@@ -1,4 +1,6 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://127.0.0.1:8000";
 
 export interface User {
   id: number;
@@ -56,7 +58,7 @@ export function getImageUrl(
     return "";
   }
 
-  /* Already a complete URL */
+  // Already a complete URL
   if (
     cleanUrl.startsWith("http://") ||
     cleanUrl.startsWith("https://") ||
@@ -65,12 +67,12 @@ export function getImageUrl(
     return cleanUrl;
   }
 
-  /* Backend-relative path */
+  // Backend-relative path
   if (cleanUrl.startsWith("/")) {
     return `${API_URL}${cleanUrl}`;
   }
 
-  /* Relative path without / */
+  // Relative path without /
   return `${API_URL}/${cleanUrl}`;
 }
 
@@ -78,9 +80,24 @@ export function getImageUrl(
    GET ALL LISTINGS
 ========================================================= */
 
-export async function getListings(): Promise<Listing[]> {
+export async function getListings(
+  params?: {
+    location?: string;
+  }
+): Promise<Listing[]> {
+  const url = new URL(
+    `${API_URL}/api/listings/`
+  );
+
+  if (params?.location) {
+    url.searchParams.set(
+      "location",
+      params.location
+    );
+  }
+
   const response = await fetch(
-    `${API_URL}/api/listings/`,
+    url.toString(),
     {
       cache: "no-store",
     }
@@ -129,15 +146,19 @@ export async function createListing(
     `${API_URL}/api/listings/`,
     {
       method: "POST",
+
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify(listing),
     }
   );
 
   if (!response.ok) {
-    throw new Error("Failed to create listing");
+    throw new Error(
+      "Failed to create listing"
+    );
   }
 
   return response.json();
@@ -155,15 +176,19 @@ export async function updateListing(
     `${API_URL}/api/listings/${id}`,
     {
       method: "PUT",
+
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify(listing),
     }
   );
 
   if (!response.ok) {
-    throw new Error("Failed to update listing");
+    throw new Error(
+      "Failed to update listing"
+    );
   }
 
   return response.json();
@@ -184,6 +209,8 @@ export async function deleteListing(
   );
 
   if (!response.ok) {
-    throw new Error("Failed to delete listing");
+    throw new Error(
+      "Failed to delete listing"
+    );
   }
 }
