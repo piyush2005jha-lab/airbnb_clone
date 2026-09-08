@@ -25,18 +25,25 @@ from schemas import (
 )
 
 
+# =========================================================
+# ROUTER
+# =========================================================
+
 router = APIRouter(
-    prefix="/api/listings",
     tags=["Listings"],
 )
 
 
-# ==========================================
+# =========================================================
 # GET ALL LISTINGS
-# ==========================================
+# =========================================================
 
 @router.get(
-    "/",
+    "/api/listings/",
+    response_model=list[ListingResponse],
+)
+@router.get(
+    "/svc/api/listings/",
     response_model=list[ListingResponse],
 )
 def get_listings(
@@ -50,7 +57,6 @@ def get_listings(
     query = db.query(Listing)
 
     if location:
-
         query = query.filter(
             Listing.location.ilike(
                 f"%{location}%"
@@ -58,19 +64,16 @@ def get_listings(
         )
 
     if min_price is not None:
-
         query = query.filter(
             Listing.price_per_night >= min_price
         )
 
     if max_price is not None:
-
         query = query.filter(
             Listing.price_per_night <= max_price
         )
 
     if property_type:
-
         query = query.filter(
             Listing.property_type == property_type
         )
@@ -84,12 +87,16 @@ def get_listings(
     )
 
 
-# ==========================================
+# =========================================================
 # GET SINGLE LISTING
-# ==========================================
+# =========================================================
 
 @router.get(
-    "/{listing_id}",
+    "/api/listings/{listing_id}",
+    response_model=ListingResponse,
+)
+@router.get(
+    "/svc/api/listings/{listing_id}",
     response_model=ListingResponse,
 )
 def get_listing(
@@ -106,7 +113,6 @@ def get_listing(
     )
 
     if not listing:
-
         raise HTTPException(
             status_code=404,
             detail="Listing not found",
@@ -115,12 +121,17 @@ def get_listing(
     return listing
 
 
-# ==========================================
+# =========================================================
 # CREATE LISTING
-# ==========================================
+# =========================================================
 
 @router.post(
-    "/",
+    "/api/listings/",
+    response_model=ListingResponse,
+    status_code=201,
+)
+@router.post(
+    "/svc/api/listings/",
     response_model=ListingResponse,
     status_code=201,
 )
@@ -131,23 +142,14 @@ def create_listing(
 ):
 
     listing = Listing(
-
         host_id=host_id,
-
         title=data.title,
-
         description=data.description,
-
         location=data.location,
-
         latitude=data.latitude,
-
         longitude=data.longitude,
-
         price_per_night=data.price_per_night,
-
         property_type=data.property_type,
-
     )
 
     db.add(listing)
@@ -156,19 +158,22 @@ def create_listing(
 
     db.refresh(listing)
 
+    # =====================================================
+    # IMAGES
+    # =====================================================
 
     for image_url in data.images:
 
         image = ListingImage(
-
             listing_id=listing.id,
-
             image_url=image_url,
-
         )
 
         db.add(image)
 
+    # =====================================================
+    # AMENITIES
+    # =====================================================
 
     for amenity_name in data.amenities:
 
@@ -190,17 +195,12 @@ def create_listing(
 
             db.flush()
 
-
         listing_amenity = ListingAmenity(
-
             listing_id=listing.id,
-
             amenity_id=amenity.id,
-
         )
 
         db.add(listing_amenity)
-
 
     db.commit()
 
@@ -209,12 +209,16 @@ def create_listing(
     return listing
 
 
-# ==========================================
+# =========================================================
 # UPDATE LISTING
-# ==========================================
+# =========================================================
 
 @router.put(
-    "/{listing_id}",
+    "/api/listings/{listing_id}",
+    response_model=ListingResponse,
+)
+@router.put(
+    "/svc/api/listings/{listing_id}",
     response_model=ListingResponse,
 )
 def update_listing(
@@ -233,15 +237,12 @@ def update_listing(
     )
 
     if not listing:
-
         raise HTTPException(
             status_code=404,
             detail="Listing not found",
         )
 
-
     if listing.host_id != host_id:
-
         raise HTTPException(
             status_code=403,
             detail=(
@@ -250,11 +251,9 @@ def update_listing(
             ),
         )
 
-
     update_data = data.model_dump(
         exclude_unset=True
     )
-
 
     images = update_data.pop(
         "images",
@@ -266,6 +265,9 @@ def update_listing(
         None,
     )
 
+    # =====================================================
+    # UPDATE BASIC FIELDS
+    # =====================================================
 
     for key, value in update_data.items():
 
@@ -275,6 +277,9 @@ def update_listing(
             value,
         )
 
+    # =====================================================
+    # UPDATE IMAGES
+    # =====================================================
 
     if images is not None:
 
@@ -288,6 +293,9 @@ def update_listing(
                 )
             )
 
+    # =====================================================
+    # UPDATE AMENITIES
+    # =====================================================
 
     if amenities is not None:
 
@@ -313,13 +321,11 @@ def update_listing(
 
                 db.flush()
 
-
             listing.amenities.append(
                 ListingAmenity(
                     amenity_id=amenity.id
                 )
             )
-
 
     db.commit()
 
@@ -328,12 +334,15 @@ def update_listing(
     return listing
 
 
-# ==========================================
+# =========================================================
 # DELETE LISTING
-# ==========================================
+# =========================================================
 
 @router.delete(
-    "/{listing_id}"
+    "/api/listings/{listing_id}"
+)
+@router.delete(
+    "/svc/api/listings/{listing_id}"
 )
 def delete_listing(
     listing_id: int,
@@ -356,7 +365,6 @@ def delete_listing(
             detail="Listing not found",
         )
 
-
     if listing.host_id != host_id:
 
         raise HTTPException(
@@ -367,11 +375,9 @@ def delete_listing(
             ),
         )
 
-
     db.delete(listing)
 
     db.commit()
-
 
     return {
         "message": "Listing deleted successfully"
