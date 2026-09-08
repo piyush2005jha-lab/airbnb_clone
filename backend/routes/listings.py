@@ -39,11 +39,7 @@ router = APIRouter(
 # =========================================================
 
 @router.get(
-    "/api/listings/",
-    response_model=list[ListingResponse],
-)
-@router.get(
-    "/svc/api/listings/",
+    "/",
     response_model=list[ListingResponse],
 )
 def get_listings(
@@ -92,11 +88,7 @@ def get_listings(
 # =========================================================
 
 @router.get(
-    "/api/listings/{listing_id}",
-    response_model=ListingResponse,
-)
-@router.get(
-    "/svc/api/listings/{listing_id}",
+    "/{listing_id}",
     response_model=ListingResponse,
 )
 def get_listing(
@@ -126,12 +118,7 @@ def get_listing(
 # =========================================================
 
 @router.post(
-    "/api/listings/",
-    response_model=ListingResponse,
-    status_code=201,
-)
-@router.post(
-    "/svc/api/listings/",
+    "/",
     response_model=ListingResponse,
     status_code=201,
 )
@@ -214,11 +201,7 @@ def create_listing(
 # =========================================================
 
 @router.put(
-    "/api/listings/{listing_id}",
-    response_model=ListingResponse,
-)
-@router.put(
-    "/svc/api/listings/{listing_id}",
+    "/{listing_id}",
     response_model=ListingResponse,
 )
 def update_listing(
@@ -339,10 +322,7 @@ def update_listing(
 # =========================================================
 
 @router.delete(
-    "/api/listings/{listing_id}"
-)
-@router.delete(
-    "/svc/api/listings/{listing_id}"
+    "/{listing_id}"
 )
 def delete_listing(
     listing_id: int,

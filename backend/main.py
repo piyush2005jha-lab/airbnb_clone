@@ -32,24 +32,6 @@ app = FastAPI(
     description="Backend API for Airbnb Clone",
     version="1.0.0",
 )
-# =========================================
-# VERCEL SERVICES PREFIX
-# =========================================
-
-@app.middleware("http")
-async def strip_vercel_service_prefix(request, call_next):
-    path = request.scope.get("path", "")
-
-    if path.startswith("/svc/api"):
-        new_path = path[len("/svc/api"):]
-
-        if not new_path:
-            new_path = "/"
-
-        request.scope["path"] = new_path
-
-    response = await call_next(request)
-    return response
 
 
 # ==========================================
@@ -60,7 +42,8 @@ app.add_middleware(
     CORSMiddleware,
 
     allow_origins=[
-        "http://localhost:3000"
+        "http://localhost:3000",
+        "https://airbnb-clone-chi-ten.vercel.app",
     ],
 
     allow_credentials=True,
@@ -72,12 +55,30 @@ app.add_middleware(
 
 
 # ==========================================
-# ROUTES
+# LISTING ROUTES
 # ==========================================
 
+# Local development
+# http://127.0.0.1:8000/api/listings/
+
 app.include_router(
-    listings_router
+    listings_router,
+    prefix="/api/listings",
 )
+
+
+# Vercel Services
+# https://airbnb-clone-chi-ten.vercel.app/svc/api/listings/
+
+app.include_router(
+    listings_router,
+    prefix="/svc/api/listings",
+)
+
+
+# ==========================================
+# BOOKING ROUTES
+# ==========================================
 
 app.include_router(
     bookings_router
