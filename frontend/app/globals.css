@@ -1,0 +1,10962 @@
+/* =====================================================
+   GLOBAL RESET + SMOOTH SCROLL
+===================================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+  max-width: 100%;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: #222222;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+
+  overscroll-behavior-y: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+
+.navbar {
+  height: 88px;
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.navbar-inner {
+  width: 100%;
+  max-width: 1440px;
+  height: 88px;
+
+  margin: 0 auto;
+  padding: 0 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  position: relative;
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  min-width: 250px;
+}
+
+.logo-symbol {
+  color: #ff385c;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+
+  transform: rotate(-8deg);
+}
+
+.logo-text {
+  color: #ff385c;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  letter-spacing: -1.2px;
+}
+
+
+/* =====================================================
+   DESKTOP NAV
+===================================================== */
+
+.desktop-nav {
+  position: absolute;
+
+  left: 50%;
+  top: 0;
+
+  transform: translateX(-50%);
+
+  height: 88px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 38px;
+}
+
+.nav-category {
+  height: 88px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  position: relative;
+
+  color: #717171;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.nav-category-icon {
+  font-size: 30px;
+  line-height: 1;
+}
+
+.nav-category.active {
+  color: #222222;
+  font-weight: 600;
+}
+
+.nav-category.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+
+  bottom: 10px;
+
+  height: 3px;
+
+  background: #222222;
+
+  border-radius: 3px;
+}
+
+
+/* =====================================================
+   NAVBAR RIGHT
+===================================================== */
+
+.navbar-right {
+  min-width: 250px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+.host-link {
+  padding: 12px 16px;
+
+  border-radius: 24px;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.host-link:hover {
+  background: #f7f7f7;
+}
+
+.profile-avatar {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  background: #f0edff;
+
+  color: #6654c8;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-button {
+  width: 46px;
+  height: 46px;
+
+  border-radius: 50%;
+
+  background: #f7f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-lines {
+  font-size: 20px;
+}
+
+
+/* =====================================================
+   PROFILE MENU
+===================================================== */
+
+.profile-menu {
+  position: absolute;
+
+  right: 52px;
+  top: 76px;
+
+  width: 230px;
+
+  padding: 8px 0;
+
+  background: #ffffff;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.12);
+
+  z-index: 100;
+}
+
+.profile-menu button {
+  display: block;
+  width: 100%;
+
+  padding: 13px 18px;
+
+  text-align: left;
+
+  font-size: 14px;
+}
+
+.profile-menu button:hover {
+  background: #f7f7f7;
+}
+
+.menu-divider {
+  height: 1px;
+  background: #eeeeee;
+  margin: 5px 0;
+}
+
+
+/* =====================================================
+   MOBILE APP BANNER
+===================================================== */
+
+.mobile-app-banner {
+  display: none;
+}
+
+
+/* =====================================================
+   SEARCH WRAPPER
+===================================================== */
+
+.search-wrapper {
+  height: 128px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #ffffff;
+
+  border-bottom: 1px solid #eeeeee;
+
+  z-index: 40;
+}
+
+
+/* =====================================================
+   SEARCH BAR
+===================================================== */
+
+.search-bar {
+  width: 960px;
+  max-width: calc(100% - 40px);
+
+  height: 74px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 5px;
+
+  background: #eeeeee;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 40px;
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.search-item {
+  height: 64px;
+
+  border-radius: 34px;
+
+  background: transparent;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 10px 22px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background: #f7f7f7;
+}
+
+.search-item-active {
+  background: #ffffff;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-location {
+  flex: 1.45;
+}
+
+.search-when {
+  flex: 1;
+}
+
+.search-who {
+  flex: 1;
+
+  flex-direction: row;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-label {
+  margin-bottom: 4px;
+
+  color: #222222;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.search-value {
+  color: #717171;
+
+  font-size: 16px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+.search-divider {
+  width: 1px;
+  height: 32px;
+
+  flex-shrink: 0;
+
+  background: #d5d5d5;
+}
+
+.who-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-button {
+  min-width: 112px;
+  height: 54px;
+
+  padding: 0 20px;
+
+  border-radius: 28px;
+
+  background: #e51d4f;
+
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.search-button:hover {
+  background: #d91446;
+}
+
+.search-button-text {
+  font-size: 16px;
+}
+
+.mobile-search {
+  display: none;
+}
+
+
+/* =====================================================
+   SEARCH POPUPS
+===================================================== */
+
+.search-panel {
+  position: absolute;
+
+  top: 106px;
+
+  background: #ffffff;
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.16);
+
+  z-index: 100;
+
+  contain: layout paint;
+}
+
+
+/* =====================================================
+   DESTINATION PANEL
+===================================================== */
+
+.destination-panel {
+  left: calc(50% - 480px);
+
+  width: 475px;
+
+  max-height: 600px;
+
+  overflow-y: auto;
+
+  padding: 30px 26px;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.panel-title {
+  margin-bottom: 12px;
+
+  color: #444444;
+
+  font-size: 14px;
+}
+
+.destination-option {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  padding: 10px;
+
+  border-radius: 14px;
+
+  text-align: left;
+}
+
+.destination-option:hover {
+  background: #f7f7f7;
+}
+
+.destination-option > div:last-child {
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.destination-option strong {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.destination-option span {
+  color: #717171;
+  font-size: 14px;
+}
+
+.destination-icon {
+  width: 62px;
+  height: 62px;
+
+  flex-shrink: 0;
+
+  border-radius: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+}
+
+.destination-icon.blue {
+  background: #eef6ff;
+  color: #4389d8;
+}
+
+.destination-icon.pink {
+  background: #fff0f3;
+  color: #ff385c;
+}
+
+.destination-icon.orange {
+  background: #fff6e8;
+  color: #d99a42;
+}
+
+.destination-icon.green {
+  background: #edf8ef;
+  color: #43a34f;
+}
+
+
+/* =====================================================
+   CALENDAR
+===================================================== */
+
+.calendar-panel {
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 945px;
+
+  padding: 38px 40px 30px;
+}
+
+.calendar-toggle {
+  width: 345px;
+  height: 48px;
+
+  margin: 0 auto 30px;
+
+  padding: 4px;
+
+  display: flex;
+
+  background: #eeeeee;
+
+  border-radius: 28px;
+}
+
+.calendar-toggle button {
+  flex: 1;
+
+  border-radius: 24px;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.calendar-toggle-active {
+  background: #ffffff;
+
+  box-shadow:
+    0 1px 5px rgba(0, 0, 0, 0.12);
+}
+
+.calendar-header {
+  display: grid;
+
+  grid-template-columns:
+    40px 1fr 1fr 40px;
+
+  align-items: center;
+
+  margin-bottom: 22px;
+
+  text-align: center;
+}
+
+.calendar-header h3 {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.calendar-header button {
+  color: #333333;
+  font-size: 28px;
+}
+
+.calendar-months {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 55px;
+}
+
+.calendar-month h3 {
+  display: none;
+}
+
+.calendar-days {
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  row-gap: 8px;
+}
+
+.calendar-days span {
+  padding-bottom: 8px;
+
+  color: #717171;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+.calendar-days button,
+.calendar-days span:empty {
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 14px;
+}
+
+.calendar-days button:hover {
+  background: #f1f1f1;
+}
+
+.calendar-days button.date-selected {
+  background: #222222;
+  color: #ffffff;
+}
+
+.calendar-days button.date-in-range {
+  background: #f1f1f1;
+  border-radius: 0;
+}
+
+.date-options {
+  display: flex;
+
+  gap: 10px;
+
+  margin-top: 25px;
+}
+
+.date-options button {
+  padding: 9px 17px;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 22px;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+}
+
+.date-options button:hover {
+  border-color: #222222;
+}
+
+.date-options .date-option-active {
+  border-color: #222222;
+}
+
+
+/* =====================================================
+   GUEST PANEL
+===================================================== */
+
+.guests-panel {
+  right: calc(50% - 480px);
+
+  width: 475px;
+
+  padding: 26px 30px;
+}
+
+.guest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 21px 0;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.guest-row:last-child {
+  border-bottom: none;
+}
+
+.guest-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.guest-info strong {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.guest-info span {
+  color: #717171;
+  font-size: 14px;
+}
+
+.guest-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.guest-controls button {
+  width: 36px;
+  height: 36px;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #444444;
+
+  font-size: 22px;
+}
+
+.guest-controls button:hover {
+  border-color: #222222;
+}
+
+.guest-controls button.disabled {
+  color: #cccccc;
+  border-color: #eeeeee;
+  cursor: default;
+}
+
+.guest-controls span {
+  min-width: 12px;
+  font-size: 16px;
+  text-align: center;
+}
+
+
+/* =====================================================
+   CATEGORY BAR
+===================================================== */
+
+.category-wrapper {
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 55px 100px 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.category-list {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 32px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+
+  -webkit-overflow-scrolling: touch;
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  min-width: max-content;
+
+  height: 40px;
+
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 22px;
+
+  background: #ffffff;
+
+  color: #222222;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.category-item:hover {
+  background: #f7f7f7;
+  border-color: #999999;
+  color: #222222;
+}
+
+.category-active,
+.category-item-selected {
+  color: #ffffff !important;
+  background: #222222 !important;
+  border-color: #222222 !important;
+}
+
+.category-item-selected:hover {
+  background: #222222 !important;
+  color: #ffffff !important;
+}
+
+.category-icon {
+  font-size: 25px;
+}
+
+.category-name {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.filter-button {
+  height: 40px;
+
+  padding: 0 17px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 22px;
+
+  background: #ffffff;
+
+  color: #222222;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.filter-button:hover {
+  border-color: #222222;
+  background: #f7f7f7;
+}
+
+.filter-button-active {
+  background: #222222;
+  color: #ffffff;
+  border-color: #222222;
+}
+
+.filter-icon {
+  font-size: 17px;
+}
+
+.filter-check {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* =====================================================
+   RESULTS
+===================================================== */
+
+.results-header {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+.results-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.results-header p {
+  color: #717171;
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   LISTINGS
+===================================================== */
+
+.page-content {
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 0 100px 60px;
+}
+
+.listing-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, minmax(0, 1fr));
+
+  gap: 0 14px;
+
+  /*
+    Important for smooth scrolling:
+    Browser can skip rendering cards that are
+    far outside the viewport.
+  */
+  content-visibility: auto;
+}
+
+.listing-card {
+  min-width: 0;
+
+  cursor: pointer;
+
+  /*
+    Improves long-page rendering.
+  */
+  content-visibility: auto;
+  contain-intrinsic-size: 360px 430px;
+}
+
+
+/* =====================================================
+   LISTING IMAGE
+===================================================== */
+
+.listing-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 0.94;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background: #f2f2f2;
+
+  contain: layout paint;
+}
+
+.listing-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  /*
+    Prevent browser from delaying image decoding
+    during scroll.
+  */
+  image-rendering: auto;
+}
+
+.image-placeholder {
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #717171;
+}
+
+
+/* =====================================================
+   HOVER ONLY FOR MOUSE
+===================================================== */
+
+@media (hover: hover) and (pointer: fine) {
+
+  .listing-image {
+    transition: transform 0.25s ease;
+  }
+
+  .listing-card:hover .listing-image {
+    transform: scale(1.025);
+  }
+
+}
+
+
+/* =====================================================
+   FAVORITE
+===================================================== */
+
+.favorite-button {
+  position: absolute;
+
+  top: 10px;
+  right: 12px;
+
+  z-index: 2;
+
+  color: #ffffff;
+
+  font-size: 28px;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.favorite-button.favorited {
+  color: #ff385c;
+}
+
+
+/* =====================================================
+   IMAGE DOTS
+===================================================== */
+
+.image-dots {
+  position: absolute;
+
+  left: 50%;
+  bottom: 12px;
+
+  transform: translateX(-50%);
+
+  display: flex;
+
+  gap: 5px;
+
+  pointer-events: none;
+}
+
+.image-dots span {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  opacity: 0.7;
+}
+
+.image-dots .active-dot {
+  opacity: 1;
+}
+
+
+/* =====================================================
+   LISTING INFO
+===================================================== */
+
+.listing-info {
+  padding-top: 10px;
+}
+
+.listing-title-row {
+  display: flex;
+
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.listing-title-row h3 {
+  min-width: 0;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.rating {
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.listing-title {
+  margin-top: 5px;
+
+  overflow: hidden;
+
+  color: #717171;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+.listing-property {
+  margin-top: 3px;
+
+  color: #717171;
+
+  font-size: 14px;
+}
+
+.listing-price {
+  margin-top: 7px;
+
+  display: flex;
+
+  gap: 4px;
+
+  font-size: 14px;
+}
+
+.listing-price strong {
+  font-size: 15px;
+}
+
+.listing-price span {
+  color: #222222;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading-state {
+  min-height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #717171;
+
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   EMPTY STATE
+===================================================== */
+
+.empty-state {
+  padding: 100px 20px;
+
+  text-align: center;
+}
+
+.empty-state h2 {
+  font-size: 24px;
+}
+
+.empty-state p {
+  margin-top: 8px;
+  color: #717171;
+}
+
+
+/* =====================================================
+   MOBILE BOTTOM NAV
+===================================================== */
+
+.mobile-bottom-nav {
+  display: none;
+}
+
+
+/* =====================================================
+   LISTING DETAIL PAGE
+===================================================== */
+
+.detail-header {
+  height: 80px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 52px;
+
+  gap: 20px;
+
+  background: #ffffff;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 100;
+}
+
+.back-button {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 25px;
+
+  color: #222;
+
+  text-decoration: none;
+}
+
+.back-button:hover {
+  background: #f7f7f7;
+}
+
+.detail-logo {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  color: #ff385c;
+
+  text-decoration: none;
+}
+
+.detail-logo-icon {
+  font-size: 30px;
+}
+
+.detail-header-actions {
+  margin-left: auto;
+
+  display: flex;
+
+  gap: 8px;
+}
+
+.detail-header-actions button {
+  padding: 10px 14px;
+
+  border-radius: 22px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: underline;
+}
+
+.detail-header-actions button:hover {
+  background: #f7f7f7;
+}
+
+
+/* =====================================================
+   DETAIL CONTAINER
+===================================================== */
+
+.detail-container {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 30px 40px 80px;
+}
+
+.detail-title-section h1 {
+  font-size: 26px;
+
+  line-height: 1.25;
+
+  font-weight: 600;
+
+  margin-bottom: 10px;
+}
+
+.detail-meta {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  font-size: 14px;
+}
+
+.detail-meta span:first-child {
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   DETAIL GALLERY
+===================================================== */
+
+.detail-gallery {
+  margin-top: 24px;
+
+  width: 100%;
+
+  height: 500px;
+
+  display: grid;
+
+  grid-template-columns: 2fr 1fr 1fr;
+
+  grid-template-rows: 1fr 1fr;
+
+  gap: 8px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  contain: layout paint;
+}
+
+.gallery-image {
+  overflow: hidden;
+
+  background: #f2f2f2;
+}
+
+.gallery-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .gallery-image img {
+    transition: transform 0.25s ease;
+  }
+
+  .gallery-image:hover img {
+    transform: scale(1.02);
+  }
+
+}
+
+.gallery-image-0 {
+  grid-row: 1 / 3;
+}
+
+.gallery-image-1 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.gallery-image-2 {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.gallery-image-3 {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.gallery-image-4 {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.gallery-one {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.gallery-one .gallery-image-0 {
+  grid-row: 1;
+}
+
+
+/* =====================================================
+   DETAIL MAIN
+===================================================== */
+
+.detail-main {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    380px;
+
+  gap: 80px;
+
+  margin-top: 40px;
+}
+
+.detail-left {
+  min-width: 0;
+}
+
+
+/* =====================================================
+   HOST
+===================================================== */
+
+.host-section {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.host-section h2 {
+  font-size: 20px;
+
+  font-weight: 600;
+
+  margin-bottom: 7px;
+}
+
+.host-section p {
+  color: #717171;
+  font-size: 14px;
+}
+
+.host-avatar {
+  width: 52px;
+  height: 52px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #f1edff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  font-weight: 600;
+
+  color: #6b4eff;
+}
+
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.detail-divider {
+  height: 1px;
+
+  background: #dddddd;
+
+  margin: 32px 0;
+}
+
+
+/* =====================================================
+   SECTIONS
+===================================================== */
+
+.detail-section h2 {
+  font-size: 21px;
+
+  font-weight: 600;
+
+  margin-bottom: 18px;
+}
+
+.description {
+  color: #444;
+
+  font-size: 15px;
+
+  line-height: 1.7;
+
+  max-width: 700px;
+}
+
+
+/* =====================================================
+   AMENITIES
+===================================================== */
+
+.amenities-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+.amenity-item {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  font-size: 15px;
+}
+
+.amenity-item span:first-child {
+  font-size: 17px;
+}
+
+
+/* =====================================================
+   MAP
+===================================================== */
+
+.map-location {
+  color: #555;
+
+  margin-bottom: 18px;
+
+  font-size: 15px;
+}
+
+.listing-map {
+  width: 100%;
+
+  height: 400px;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background: #eeeeee;
+
+  border: 1px solid #dddddd;
+}
+
+/*
+  When the interactive Leaflet map (.airbnb-map) renders inside
+  this wrapper, let it fill the wrapper instead of using its own
+  fixed heights, since .listing-map already handles responsive
+  sizing at each breakpoint.
+*/
+.listing-map .airbnb-map {
+  height: 100%;
+  border-radius: 0;
+}
+
+.listing-map iframe {
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+}
+
+.map-fallback {
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  color: #555;
+
+  font-size: 18px;
+}
+
+.map-fallback span {
+  font-size: 35px;
+}
+
+
+/* =====================================================
+   RESERVATION
+===================================================== */
+
+.reservation-wrapper {
+  position: relative;
+}
+
+.reservation-card {
+  position: sticky;
+
+  top: 105px;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 16px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.10);
+}
+
+.reservation-price {
+  display: flex;
+
+  align-items: baseline;
+
+  gap: 5px;
+
+  margin-bottom: 20px;
+}
+
+.reservation-price strong {
+  font-size: 22px;
+}
+
+.reservation-price span {
+  color: #717171;
+  font-size: 14px;
+}
+
+.reservation-fields {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  border: 1px solid #888888;
+
+  border-radius: 10px 10px 0 0;
+
+  overflow: hidden;
+}
+
+.reservation-field {
+  padding: 12px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.reservation-field + .reservation-field {
+  border-left: 1px solid #888888;
+}
+
+.reservation-field strong {
+  font-size: 10px;
+}
+
+.reservation-field span {
+  font-size: 13px;
+  color: #717171;
+}
+
+.guest-field {
+  width: 100%;
+
+  padding: 14px 12px;
+
+  border: 1px solid #888888;
+
+  border-top: none;
+
+  border-radius: 0 0 10px 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  text-align: left;
+}
+
+.guest-field span:first-child {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.guest-field strong {
+  font-size: 10px;
+}
+
+.guest-field small {
+  font-size: 13px;
+
+  color: #555;
+}
+
+.reserve-button {
+  width: 100%;
+
+  height: 52px;
+
+  margin-top: 20px;
+
+  border-radius: 8px;
+
+  background: #e31c5f;
+
+  color: white;
+
+  font-size: 16px;
+
+  font-weight: 600;
+}
+
+.reserve-button:hover {
+  background: #d70463;
+}
+
+.reserve-note {
+  text-align: center;
+
+  color: #717171;
+
+  font-size: 12px;
+
+  margin: 14px 0 20px;
+}
+
+.price-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  font-size: 14px;
+
+  margin-top: 13px;
+}
+
+.reservation-total {
+  display: flex;
+
+  justify-content: space-between;
+
+  border-top: 1px solid #dddddd;
+
+  margin-top: 20px;
+
+  padding-top: 20px;
+
+  font-size: 16px;
+}
+
+
+/* =====================================================
+   SIMILAR HOMES
+===================================================== */
+
+.similar-section {
+  margin-top: 70px;
+
+  border-top: 1px solid #dddddd;
+
+  padding-top: 40px;
+}
+
+.similar-section h2 {
+  font-size: 24px;
+
+  margin-bottom: 24px;
+}
+
+.similar-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  content-visibility: auto;
+}
+
+.similar-card {
+  text-decoration: none;
+
+  color: #222;
+
+  min-width: 0;
+
+  content-visibility: auto;
+  contain-intrinsic-size: 300px 380px;
+}
+
+.similar-image {
+  position: relative;
+
+  aspect-ratio: 1 / 0.95;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #f2f2f2;
+
+  contain: layout paint;
+}
+
+.similar-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+  .similar-image img {
+    transition: transform 0.25s ease;
+  }
+
+  .similar-card:hover img {
+    transform: scale(1.03);
+  }
+
+}
+
+.similar-heart {
+  position: absolute;
+
+  right: 12px;
+  top: 10px;
+
+  color: white;
+
+  font-size: 27px;
+
+  text-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.similar-info {
+  padding-top: 10px;
+}
+
+.similar-title {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+.similar-title strong {
+  font-size: 14px;
+}
+
+.similar-title span {
+  font-size: 13px;
+}
+
+.similar-info p {
+  color: #717171;
+
+  font-size: 14px;
+
+  margin: 5px 0;
+}
+
+.similar-info > strong {
+  font-size: 14px;
+}
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1100px) {
+
+  .navbar-inner {
+    padding: 0 30px;
+  }
+
+  .logo {
+    min-width: 180px;
+  }
+
+  .desktop-nav {
+    gap: 22px;
+  }
+
+  .nav-category {
+    font-size: 14px;
+  }
+
+  .nav-category-icon {
+    font-size: 25px;
+  }
+
+  .navbar-right {
+    min-width: 180px;
+  }
+
+  .search-bar {
+    width: 850px;
+  }
+
+  .listing-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 28px 16px;
+  }
+
+  .category-wrapper {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .page-content {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .calendar-panel {
+    width: 850px;
+  }
+
+  .destination-panel {
+    left: calc(50% - 425px);
+  }
+
+  .guests-panel {
+    right: calc(50% - 425px);
+  }
+}
+
+
+/* =====================================================
+   DETAIL TABLET
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .detail-header {
+    padding: 0 24px;
+  }
+
+  .detail-container {
+    padding: 25px 24px 60px;
+  }
+
+  .detail-gallery {
+    height: 420px;
+  }
+
+  .detail-main {
+    grid-template-columns: 1fr;
+
+    gap: 40px;
+  }
+
+  .reservation-wrapper {
+    order: -1;
+  }
+
+  .reservation-card {
+    position: relative;
+    top: auto;
+  }
+
+  .similar-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  body {
+    padding-bottom: 72px;
+
+    /*
+      Better mobile touch scrolling.
+    */
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  /* APP BANNER */
+
+  .mobile-app-banner {
+    height: 82px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 12px;
+
+    gap: 10px;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #eeeeee;
+  }
+
+  .app-close {
+    width: 20px;
+    height: 20px;
+
+    flex-shrink: 0;
+
+    color: #717171;
+
+    font-size: 22px;
+  }
+
+  .app-logo {
+    width: 46px;
+    height: 46px;
+
+    flex-shrink: 0;
+
+    border-radius: 9px;
+
+    background: #ff385c;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 30px;
+  }
+
+  .app-text {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+  }
+
+  .app-text strong {
+    font-size: 16px;
+  }
+
+  .app-text span {
+    overflow: hidden;
+
+    color: #717171;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+  }
+
+  .use-app-button {
+    flex-shrink: 0;
+
+    padding: 8px 12px;
+
+    border-radius: 18px;
+
+    background: #1877f2;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+
+  /* NAV */
+
+  .navbar {
+    display: none;
+  }
+
+
+  /* SEARCH */
+
+  .search-wrapper {
+    height: 96px;
+
+    padding: 14px 16px;
+
+    border-bottom: none;
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .mobile-search {
+    width: 100%;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 22px;
+
+    background: #ffffff;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 34px;
+
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.12);
+
+    text-align: left;
+  }
+
+  .mobile-search-icon {
+    color: #222222;
+    font-size: 27px;
+  }
+
+  .mobile-search-text {
+    color: #222222;
+
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+
+  /* MOBILE POPUPS */
+
+  .search-panel {
+    position: fixed;
+
+    top: 145px;
+
+    left: 12px;
+    right: 12px;
+
+    width: auto;
+
+    max-height: calc(100vh - 220px);
+
+    overflow-y: auto;
+
+    transform: none;
+
+    border-radius: 24px;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .destination-panel,
+  .guests-panel {
+    padding: 22px;
+  }
+
+  .calendar-panel {
+    padding: 24px 18px;
+  }
+
+
+  /* MOBILE CALENDAR */
+
+  .calendar-header {
+    grid-template-columns:
+      25px 1fr 1fr 25px;
+
+    gap: 5px;
+  }
+
+  .calendar-header h3 {
+    font-size: 15px;
+  }
+
+  .calendar-months {
+    gap: 10px;
+  }
+
+  .calendar-days {
+    row-gap: 3px;
+  }
+
+  .calendar-days button,
+  .calendar-days span:empty {
+    height: 38px;
+
+    font-size: 12px;
+  }
+
+  .date-options {
+    overflow-x: auto;
+
+    padding-bottom: 3px;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  /* DESTINATIONS */
+
+  .destination-option {
+    gap: 12px;
+    padding: 9px 6px;
+  }
+
+  .destination-icon {
+    width: 52px;
+    height: 52px;
+
+    font-size: 21px;
+  }
+
+  .destination-option strong {
+    font-size: 14px;
+  }
+
+  .destination-option span {
+    font-size: 12px;
+  }
+
+
+  /* CATEGORY */
+
+  .category-wrapper {
+    padding: 0 16px 12px;
+
+    gap: 8px;
+
+    border-bottom: none;
+  }
+
+  .category-list {
+    gap: 8px;
+
+    overflow-x: auto;
+
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-item {
+    height: 42px;
+
+    padding: 0 14px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #dddddd;
+
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 2px 6px rgba(0, 0, 0, 0.08);
+
+    color: #222222;
+  }
+
+  .category-item:hover {
+    border-bottom-color: #dddddd;
+  }
+
+  .category-item.category-active {
+    border-color: #aaaaaa;
+  }
+
+  .category-icon {
+    font-size: 19px;
+  }
+
+  .category-name {
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .filter-button {
+    display: none;
+  }
+
+
+  /* RESULTS */
+
+  .results-header {
+    margin-bottom: 12px;
+
+    flex-direction: column;
+
+    gap: 4px;
+  }
+
+  .results-header h2 {
+    font-size: 18px;
+  }
+
+  .results-header p {
+    font-size: 12px;
+  }
+
+
+  /* LISTINGS */
+
+  .page-content {
+    padding: 10px 16px 30px;
+  }
+
+  .listing-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 24px 10px;
+  }
+
+  .listing-image-wrapper {
+    aspect-ratio: 1 / 1;
+
+    border-radius: 15px;
+  }
+
+  .listing-info {
+    padding-top: 8px;
+  }
+
+  .listing-title-row {
+    gap: 4px;
+  }
+
+  .listing-title-row h3 {
+    font-size: 14px;
+  }
+
+  .rating {
+    font-size: 12px;
+  }
+
+  .listing-title {
+    margin-top: 3px;
+
+    font-size: 13px;
+  }
+
+  .listing-property {
+    margin-top: 2px;
+
+    font-size: 13px;
+  }
+
+  .listing-price {
+    margin-top: 5px;
+
+    font-size: 13px;
+  }
+
+  .listing-price strong {
+    font-size: 14px;
+  }
+
+
+  /* HEART */
+
+  .favorite-button {
+    top: 8px;
+    right: 9px;
+
+    font-size: 26px;
+  }
+
+
+  /* BOTTOM NAV */
+
+  .mobile-bottom-nav {
+    position: fixed;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    background: #ffffff;
+
+    border-top: 1px solid #eeeeee;
+
+    z-index: 100;
+  }
+
+  .bottom-nav-item {
+    height: 100%;
+
+    min-width: 55px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: #717171;
+
+    font-size: 10px;
+  }
+
+  .bottom-nav-item.active {
+    color: #ff385c;
+  }
+
+  .bottom-nav-icon {
+    font-size: 25px;
+    line-height: 1;
+  }
+
+
+  /* DETAIL MOBILE */
+
+  .detail-header {
+    height: 65px;
+
+    padding: 0 16px;
+  }
+
+  .detail-logo {
+    font-size: 20px;
+  }
+
+  .detail-logo-icon {
+    font-size: 25px;
+  }
+
+  .detail-header-actions button {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .detail-container {
+    padding: 20px 16px 50px;
+  }
+
+  .detail-title-section h1 {
+    font-size: 21px;
+  }
+
+  .detail-meta {
+    font-size: 12px;
+  }
+
+  .detail-gallery {
+    margin-top: 18px;
+
+    height: 300px;
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    grid-template-rows: 1fr 1fr;
+
+    gap: 4px;
+
+    border-radius: 12px;
+  }
+
+  .gallery-image-0 {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+  }
+
+  .gallery-image-1 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .gallery-image-2 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .gallery-image-3,
+  .gallery-image-4 {
+    display: none;
+  }
+
+  .host-section h2 {
+    font-size: 17px;
+  }
+
+  .host-section p {
+    font-size: 13px;
+  }
+
+  .amenities-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .listing-map {
+    height: 300px;
+  }
+
+  .reservation-card {
+    padding: 18px;
+    box-shadow: none;
+  }
+
+  .similar-section {
+    margin-top: 45px;
+  }
+
+  .similar-section h2 {
+    font-size: 20px;
+  }
+
+  .similar-grid {
+    grid-template-columns: 1fr 1fr;
+
+    gap: 14px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .mobile-app-banner {
+    padding-left: 8px;
+    padding-right: 8px;
+
+    gap: 7px;
+  }
+
+  .app-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .app-text strong {
+    font-size: 14px;
+  }
+
+  .app-text span {
+    max-width: 145px;
+    font-size: 11px;
+  }
+
+  .use-app-button {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+
+  /* LISTINGS */
+
+  .listing-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 24px 10px;
+  }
+
+  .listing-image-wrapper {
+    border-radius: 14px;
+  }
+
+  .listing-title-row h3 {
+    font-size: 13px;
+  }
+
+  .rating {
+    font-size: 11px;
+  }
+
+  .listing-title {
+    font-size: 12px;
+  }
+
+  .listing-property {
+    font-size: 12px;
+  }
+
+  .listing-price {
+    font-size: 12px;
+  }
+
+  .listing-price strong {
+    font-size: 13px;
+  }
+
+
+  /* GUEST */
+
+  .guest-row {
+    padding: 17px 0;
+  }
+
+  .guest-info strong {
+    font-size: 15px;
+  }
+
+  .guest-info span {
+    font-size: 12px;
+  }
+
+  .guest-controls {
+    gap: 10px;
+  }
+
+  .guest-controls button {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  /* CALENDAR */
+
+  .calendar-panel {
+    left: 8px;
+    right: 8px;
+
+    padding: 20px 10px;
+  }
+
+  .calendar-toggle {
+    width: 280px;
+  }
+
+  .calendar-header h3 {
+    font-size: 13px;
+  }
+
+  .calendar-days button,
+  .calendar-days span:empty {
+    height: 32px;
+
+    font-size: 11px;
+  }
+
+  .calendar-days span {
+    font-size: 10px;
+  }
+
+  .date-options button {
+    padding: 8px 13px;
+
+    font-size: 12px;
+  }
+}
+
+
+/* =====================================================
+   VERY SMALL DEVICES
+===================================================== */
+
+@media (max-width: 360px) {
+
+  .app-text span {
+    display: none;
+  }
+
+  .app-text strong {
+    font-size: 13px;
+  }
+
+  .use-app-button {
+    font-size: 10px;
+  }
+
+  .category-item {
+    padding: 0 12px;
+  }
+
+  .category-name {
+    font-size: 13px;
+  }
+
+  .listing-title-row h3 {
+    font-size: 12px;
+  }
+
+  .listing-title {
+    font-size: 11px;
+  }
+
+  .listing-property {
+    font-size: 11px;
+  }
+
+  .listing-price {
+    font-size: 11px;
+  }
+
+  .listing-price strong {
+    font-size: 12px;
+  }
+}
+
+
+/* =====================================================
+   ACCESSIBILITY / PERFORMANCE
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+/* =====================================================
+   REAL AIRBNB STYLE MAP
+===================================================== */
+
+.airbnb-map {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #e8e8e8;
+}
+
+.leaflet-map {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+
+/* =====================================================
+   PRICE MARKERS
+===================================================== */
+
+.price-marker-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+.price-marker {
+  width: max-content;
+  min-width: 82px;
+  height: 40px;
+
+  padding: 0 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 22px;
+
+  color: #222;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.2);
+
+  white-space: nowrap;
+}
+
+.price-marker:hover {
+  transform: scale(1.06);
+}
+
+
+/* =====================================================
+   LOCATION MARKER
+===================================================== */
+
+.location-marker-wrapper {
+  background: transparent !important;
+  border: none !important;
+}
+
+.location-marker {
+  height: 42px;
+
+  min-width: 82px;
+
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  background: white;
+
+  border: 1px solid #eee;
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.18);
+
+  color: #222;
+
+  font-size: 14px;
+
+  white-space: nowrap;
+}
+
+.location-marker span {
+  font-size: 11px;
+}
+
+
+/* =====================================================
+   EXPAND BUTTON
+===================================================== */
+
+.map-expand-button {
+  position: absolute;
+
+  right: 18px;
+  top: 18px;
+
+  z-index: 1000;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+
+  background: white;
+
+  border: 1px solid #eee;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.16);
+
+  text-decoration: none;
+  color: #222222;
+
+  font-size: 21px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   ZOOM
+===================================================== */
+
+.map-zoom-controls {
+  position: absolute;
+
+  right: 18px;
+  top: 76px;
+
+  z-index: 1000;
+
+  width: 50px;
+
+  overflow: hidden;
+
+  border-radius: 17px;
+
+  background: white;
+
+  border: 1px solid #eee;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+.map-zoom-controls button {
+  width: 50px;
+  height: 50px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  font-size: 30px;
+
+  cursor: pointer;
+}
+
+.map-zoom-controls div {
+  height: 1px;
+
+  background: #eee;
+}
+
+
+/* =====================================================
+   LEAFLET FIXES
+===================================================== */
+
+.leaflet-control-attribution {
+  font-size: 9px !important;
+}
+
+.leaflet-control-zoom {
+  display: none !important;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+  .airbnb-map {
+    height: 450px;
+  }
+
+  .price-marker {
+    min-width: 70px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .airbnb-map {
+    height: 360px;
+    border-radius: 16px;
+  }
+
+  .price-marker {
+    min-width: 62px;
+    height: 32px;
+    padding: 0 9px;
+    font-size: 11px;
+  }
+
+  .map-expand-button {
+    right: 12px;
+    top: 12px;
+
+    width: 38px;
+    height: 38px;
+  }
+
+  .map-zoom-controls {
+    right: 12px;
+    top: 60px;
+
+    width: 42px;
+  }
+
+  .map-zoom-controls button {
+    width: 42px;
+    height: 42px;
+
+    font-size: 25px;
+  }
+}
+/* =====================================================
+   DYNAMIC SEARCH BAR
+===================================================== */
+
+.search-wrapper {
+  overflow: visible;
+
+  transition:
+    height 0.28s ease,
+    opacity 0.2s ease,
+    transform 0.28s ease;
+}
+
+/* When user scrolls down */
+.search-wrapper-scrolled {
+  height: 0 !important;
+
+  min-height: 0 !important;
+
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  border-bottom: 0 !important;
+
+  opacity: 0;
+
+  transform: translateY(-15px);
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   COMPACT SEARCH
+===================================================== */
+
+.compact-search {
+  position: fixed;
+
+  top: 18px;
+  left: 50%;
+
+  width: 480px;
+  max-width: calc(100vw - 430px);
+
+  min-width: 400px;
+
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 5px 7px 5px 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #dddddd;
+
+  border-radius: 999px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 6px 20px rgba(0, 0, 0, 0.08);
+
+  transform:
+    translate(-50%, -25px)
+    scale(0.96);
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  z-index: 300;
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+
+/* Visible after scrolling */
+
+.compact-search-visible {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* =====================================================
+   COMPACT CONTENT
+===================================================== */
+
+.compact-search-part {
+  display: flex;
+  align-items: center;
+
+  white-space: nowrap;
+
+  font-size: 14px;
+
+  color: #222222;
+}
+
+.compact-location {
+  gap: 6px;
+}
+
+.compact-home {
+  font-size: 20px;
+}
+
+.compact-divider {
+  width: 1px;
+
+  height: 24px;
+
+  background: #dddddd;
+
+  margin: 0 12px;
+}
+
+
+/* =====================================================
+   COMPACT SEARCH BUTTON
+===================================================== */
+
+.compact-search-button {
+  flex-shrink: 0;
+
+  width: 40px;
+  height: 40px;
+
+  margin-left: auto;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e31c5f;
+
+  color: #ffffff;
+
+  font-size: 17px;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease;
+}
+
+.compact-search-button:hover {
+  transform: scale(1.05);
+
+  background: #d41450;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .compact-search {
+    top: 10px;
+
+    width: auto;
+
+    min-width: 0;
+
+    max-width: calc(100vw - 95px);
+
+    height: 48px;
+
+    padding-left: 12px;
+  }
+
+  .compact-search-part {
+    font-size: 12px;
+  }
+
+  .compact-home {
+    font-size: 17px;
+  }
+
+  .compact-divider {
+    margin: 0 7px;
+
+    height: 21px;
+  }
+
+  .compact-search-button {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .compact-search {
+    max-width: calc(100vw - 80px);
+  }
+
+  .compact-location strong {
+    display: none;
+  }
+
+  .compact-search-part:nth-of-type(3) {
+    display: none;
+  }
+
+  .compact-search-part {
+    font-size: 12px;
+  }
+}
+/* =====================================================
+   AIRBNB STYLE SEARCH TRANSITION
+===================================================== */
+
+.search-wrapper {
+  position: relative;
+  z-index: 100;
+
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 300ms ease;
+
+  will-change: transform, opacity;
+}
+
+
+/* =====================================================
+   MAIN SEARCH BAR
+===================================================== */
+
+.search-bar {
+  transform-origin: center top;
+
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 300ms ease;
+
+  will-change: transform, opacity;
+}
+
+
+/*
+   DON'T instantly disappear.
+
+   It moves upward and shrinks,
+   exactly like the reference behavior.
+*/
+
+.search-bar-compacting {
+  transform:
+    translateY(-22px)
+    scale(0.86);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   SEARCH WRAPPER WHEN SCROLLED
+===================================================== */
+
+.search-wrapper.is-scrolled {
+  transform:
+    translateY(-18px);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* =====================================================
+   COMPACT SEARCH
+===================================================== */
+
+.compact-search {
+  position: fixed;
+
+  top: 18px;
+  left: 50%;
+
+  z-index: 500;
+
+  width: 480px;
+  height: 52px;
+
+  max-width: calc(100vw - 440px);
+  min-width: 390px;
+
+  display: flex;
+  align-items: center;
+
+  padding:
+    5px
+    7px
+    5px
+    16px;
+
+  border:
+    1px solid #dddddd;
+
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 8px 25px rgba(0, 0, 0, 0.08);
+
+  color: #222222;
+
+  opacity: 0;
+
+  transform:
+    translate(-50%, -30px)
+    scale(0.90);
+
+  pointer-events: none;
+
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 260ms ease,
+    box-shadow 250ms ease;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+
+/* =====================================================
+   COMPACT BAR APPEARS
+===================================================== */
+
+.compact-search-visible {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* =====================================================
+   COMPACT CONTENT
+===================================================== */
+
+.compact-search-part {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  white-space: nowrap;
+
+  font-size: 14px;
+
+  line-height: 1;
+
+  color: #222222;
+}
+
+.compact-search-part strong {
+  font-weight: 600;
+}
+
+.compact-home {
+  font-size: 19px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+/* =====================================================
+   DIVIDERS
+===================================================== */
+
+.compact-divider {
+  width: 1px;
+
+  height: 25px;
+
+  flex-shrink: 0;
+
+  margin:
+    0 12px;
+
+  background: #dddddd;
+}
+
+
+/* =====================================================
+   COMPACT SEARCH BUTTON
+===================================================== */
+
+.compact-search-button {
+  width: 40px;
+
+  height: 40px;
+
+  margin-left: auto;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #e31c5f;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.compact-search:hover
+.compact-search-button {
+  transform: scale(1.04);
+}
+
+
+/* =====================================================
+   SMOOTH SEARCH WRAPPER
+===================================================== */
+
+.search-wrapper,
+.search-bar,
+.compact-search {
+  backface-visibility: hidden;
+
+  -webkit-backface-visibility: hidden;
+
+  transform-style: preserve-3d;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .search-wrapper.is-scrolled {
+    transform:
+      translateY(-12px);
+  }
+
+  .compact-search {
+    top: 10px;
+
+    width: auto;
+
+    min-width: 0;
+
+    max-width:
+      calc(100vw - 80px);
+
+    height: 48px;
+
+    padding-left: 12px;
+  }
+
+  .compact-search-part {
+    font-size: 12px;
+
+    gap: 4px;
+  }
+
+  .compact-home {
+    font-size: 17px;
+  }
+
+  .compact-divider {
+    height: 20px;
+
+    margin:
+      0 7px;
+  }
+
+  .compact-search-button {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .compact-search {
+    max-width:
+      calc(100vw - 70px);
+  }
+
+  .compact-location strong {
+    display: none;
+  }
+
+  .compact-search-part:nth-of-type(3) {
+    display: none;
+  }
+
+  .compact-divider:nth-of-type(2) {
+    display: none;
+  }
+}
+
+
+/* =====================================================
+   REDUCE MOTION
+===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .search-wrapper,
+  .search-bar,
+  .compact-search {
+    transition: none !important;
+  }
+}
+/* =====================================================
+   SCROLL COMPACT HEADER TRANSITION
+===================================================== */
+
+/*
+   Jab compact search visible ho:
+   desktop navigation smoothly hide hogi.
+*/
+
+body:has(.compact-search-visible) .desktop-nav {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-12px) scale(0.96);
+
+  transition:
+    opacity 220ms ease,
+    transform 300ms ease,
+    visibility 220ms ease;
+}
+
+
+/*
+   Globe/language button bhi hide hoga
+   taaki compact search ke peeche kuch na dikhe.
+*/
+
+body:has(.compact-search-visible) .globe-button {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: scale(0.85);
+
+  transition:
+    opacity 220ms ease,
+    transform 280ms ease,
+    visibility 220ms ease;
+}
+
+
+/* =====================================================
+   NORMAL STATE
+===================================================== */
+
+.desktop-nav,
+.globe-button {
+  transition:
+    opacity 300ms ease,
+    transform 350ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 300ms ease;
+}
+
+
+/* =====================================================
+   MAKE NAVBAR CLEAN WHEN COMPACT SEARCH IS OPEN
+===================================================== */
+
+body:has(.compact-search-visible) .navbar-inner {
+  transition:
+    padding 350ms ease;
+}
+
+
+/*
+   Compact search ko navbar ke upar proper layer do.
+*/
+
+.compact-search {
+  z-index: 1000;
+}
+
+
+/* =====================================================
+   SMOOTH COMPACT SEARCH
+===================================================== */
+
+.compact-search {
+  transition:
+    opacity 280ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 250ms ease;
+}
+
+
+/* =====================================================
+   SCROLL STATE
+===================================================== */
+
+.compact-search-visible {
+  opacity: 1;
+
+  transform:
+    translate(-50%, 0)
+    scale(1);
+
+  pointer-events: auto;
+}
+
+
+/* =====================================================
+   MAIN SEARCH DISAPPEAR
+===================================================== */
+
+.search-wrapper.is-scrolled {
+  opacity: 0;
+
+  transform:
+    translateY(-20px)
+    scale(0.96);
+
+  pointer-events: none;
+
+  transition:
+    opacity 280ms ease,
+    transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* =====================================================
+   PREVENT ELEMENT FLASH DURING TRANSITION
+===================================================== */
+
+.navbar,
+.navbar-inner,
+.desktop-nav,
+.navbar-right,
+.search-wrapper,
+.compact-search {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  body:has(.compact-search-visible) .desktop-nav {
+    display: none;
+  }
+
+  body:has(.compact-search-visible) .globe-button {
+    display: none;
+  }
+
+  .compact-search {
+    top: 10px;
+
+    height: 48px;
+
+    max-width:
+      calc(100vw - 70px);
+
+    min-width: 280px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .compact-search {
+    min-width: 250px;
+
+    max-width:
+      calc(100vw - 40px);
+  }
+
+}
+/* =====================================================
+   HOMEPAGE SECTIONS
+===================================================== */
+
+.home-section {
+  margin-top: 48px;
+}
+
+.home-section:first-child {
+  margin-top: 58px;
+}
+
+.section-heading-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.section-heading-row h2 {
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 650;
+  color: #222;
+}
+
+.section-arrow {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  background: #f7f7f7;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease;
+}
+
+.section-arrow:hover {
+  background: #eeeeee;
+  transform: scale(1.05);
+}
+
+
+/* =====================================================
+   EXPERIENCE SECTIONS
+===================================================== */
+
+.experience-scroll {
+  display: flex;
+
+  gap: 14px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+
+  scroll-behavior: smooth;
+
+  padding-bottom: 5px;
+}
+
+.experience-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.experience-card {
+  flex: 0 0 calc((100% - 126px) / 10);
+
+  min-width: 135px;
+
+  cursor: pointer;
+}
+
+.experience-image-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  background: #f2f2f2;
+}
+
+.experience-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 300ms ease;
+}
+
+.experience-card:hover .experience-image {
+  transform: scale(1.04);
+}
+
+.experience-heart {
+  position: absolute;
+
+  top: 10px;
+  right: 10px;
+
+  color: white;
+
+  font-size: 25px;
+
+  line-height: 1;
+
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+}
+
+.experience-card h3 {
+  margin-top: 10px;
+
+  font-size: 14px;
+
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  color: #222;
+}
+
+.experience-card p {
+  margin-top: 4px;
+
+  font-size: 13px;
+
+  line-height: 1.25;
+
+  color: #717171;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.site-footer {
+  margin-top: 80px;
+
+  background: #f7f7f7;
+
+  border-top: 1px solid #dddddd;
+}
+
+.footer-inner {
+  max-width: 1440px;
+
+  margin: 0 auto;
+
+  padding: 52px 54px 28px;
+}
+
+.footer-columns {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 80px;
+
+  padding-bottom: 52px;
+}
+
+.footer-column {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+}
+
+.footer-column h3 {
+  font-size: 14px;
+
+  font-weight: 600;
+
+  margin-bottom: 22px;
+}
+
+.footer-column a {
+  font-size: 14px;
+
+  color: #222;
+
+  margin-bottom: 16px;
+
+  cursor: pointer;
+
+  transition: text-decoration 150ms ease;
+}
+
+.footer-column a:hover {
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   FOOTER BOTTOM
+===================================================== */
+
+.footer-bottom {
+  border-top: 1px solid #dddddd;
+
+  padding-top: 25px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.footer-legal {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  font-size: 14px;
+}
+
+.footer-legal a {
+  cursor: pointer;
+}
+
+.footer-legal a:hover {
+  text-decoration: underline;
+}
+
+.footer-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+}
+
+.footer-right button {
+  font-size: 14px;
+
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.footer-right button:hover {
+  text-decoration: underline;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 1200px) {
+
+  .experience-card {
+    flex-basis: calc((100% - 70px) / 6);
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .experience-card {
+    flex-basis: calc((100% - 42px) / 4);
+  }
+
+  .footer-columns {
+    gap: 40px;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+
+  .home-section {
+    margin-top: 36px;
+  }
+
+  .home-section:first-child {
+    margin-top: 32px;
+  }
+
+  .section-heading-row h2 {
+    font-size: 20px;
+  }
+
+  .experience-card {
+    flex-basis: 190px;
+  }
+
+  .footer-inner {
+    padding: 40px 20px 25px;
+  }
+
+  .footer-columns {
+    grid-template-columns: 1fr;
+
+    gap: 32px;
+
+    padding-bottom: 35px;
+  }
+
+  .footer-column h3 {
+    margin-bottom: 16px;
+  }
+
+  .footer-column a {
+    margin-bottom: 12px;
+  }
+
+  .footer-bottom {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 22px;
+  }
+
+  .footer-right {
+    flex-wrap: wrap;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .experience-card {
+    flex-basis: 170px;
+  }
+
+  .experience-image-wrapper {
+    border-radius: 14px;
+  }
+
+  .footer-legal {
+    font-size: 13px;
+  }
+
+}
+
+/* =====================================================
+   FINAL SCROLL TRANSITION — CATEGORY BAR + NAV CLEANUP
+   ===================================================== */
+
+/*
+   IMPORTANT:
+   The category bar is visible at the top.
+   As soon as the compact search becomes visible,
+   the complete category bar smoothly moves upward
+   and disappears.
+
+   This uses the existing .compact-search-visible state,
+   so no extra CategoryBar state is required.
+*/
+
+.category-wrapper {
+  position: relative;
+  z-index: 30;
+
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+
+  transition:
+    opacity 260ms ease,
+    transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    padding 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    max-height 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  max-height: 110px;
+  overflow: hidden;
+
+  will-change: opacity, transform, max-height;
+}
+
+
+/*
+   Once the compact search is active,
+   hide the WHOLE category row.
+*/
+
+body:has(.compact-search-visible) .category-wrapper {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-28px);
+
+  max-height: 0;
+
+  padding-top: 0;
+  padding-bottom: 0;
+
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+/*
+   Hide desktop navigation behind the compact search.
+   This prevents "Homes / Experiences / Services"
+   from showing behind the small search bar.
+*/
+
+body:has(.compact-search-visible) .desktop-nav {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+
+  transform:
+    translate(-50%, -14px)
+    scale(0.96) !important;
+}
+
+
+/*
+   Hide the language/globe control as well.
+*/
+
+body:has(.compact-search-visible) .globe-button {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+
+  transform: scale(0.85) !important;
+}
+
+
+/*
+   Keep the compact search above EVERYTHING.
+*/
+
+.compact-search {
+  z-index: 9999 !important;
+}
+
+
+/*
+   The navbar itself must stay above the disappearing
+   category section.
+*/
+
+.navbar {
+  z-index: 5000;
+}
+
+.navbar-inner {
+  z-index: 5001;
+}
+
+
+/*
+   Smooth normal-state transitions.
+*/
+
+.desktop-nav,
+.globe-button {
+  transition:
+    opacity 260ms ease,
+    transform 360ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    visibility 260ms ease;
+}
+
+
+/*
+   When category bar disappears, don't leave an empty
+   white gap before the listing content.
+*/
+
+body:has(.compact-search-visible) .page-content {
+  transition:
+    padding-top 300ms ease,
+    margin-top 300ms ease;
+}
+
+
+/* =====================================================
+   MOBILE FINAL OVERRIDE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+  .category-wrapper {
+    max-height: 80px;
+  }
+
+  body:has(.compact-search-visible) .category-wrapper {
+    max-height: 0;
+
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+
+    transform: translateY(-18px);
+  }
+
+  .compact-search {
+    z-index: 9999 !important;
+  }
+}
+
+
+/* =====================================================
+   REDUCED MOTION
+   ===================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .category-wrapper,
+  .desktop-nav,
+  .globe-button {
+    transition: none !important;
+  }
+}
+/* =========================================================
+   SEARCH RESULTS PAGE — AIRBNB STYLE
+   ========================================================= */
+
+.results-page {
+  width: 100%;
+  min-height: calc(100vh - 170px);
+  background: #fff;
+}
+
+
+/* =========================================================
+   RESULTS HEADER
+   ========================================================= */
+
+.results-header {
+  width: 100%;
+  padding: 34px 54px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.results-header h2 {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 30px;
+  font-weight: 600;
+
+  color: #222;
+}
+
+.results-header p {
+  margin: 4px 0 0;
+
+  font-size: 14px;
+  color: #717171;
+}
+
+
+/* =========================================================
+   RESULT + MAP LAYOUT
+   ========================================================= */
+
+.results-layout {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(520px, 46vw);
+
+  gap: 44px;
+
+  padding:
+    0
+    54px
+    60px;
+}
+
+
+/* =========================================================
+   LEFT LISTINGS AREA
+   ========================================================= */
+
+.results-listings {
+  min-width: 0;
+}
+
+
+/* 2 cards per row */
+
+.results-listings .listing-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 26px;
+  row-gap: 48px;
+
+  width: 100%;
+}
+
+
+/* =========================================================
+   RESULT CARD
+   ========================================================= */
+
+.results-listings .listing-card {
+  width: 100%;
+  min-width: 0;
+
+  cursor: pointer;
+}
+
+
+/* image */
+
+.results-listings .listing-image-wrapper {
+  width: 100%;
+
+  aspect-ratio: 1.35 / 1;
+
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  position: relative;
+
+  background: #f1f1f1;
+}
+
+.results-listings .listing-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition:
+    transform 300ms ease;
+}
+
+.results-listings .listing-card:hover
+.listing-image {
+  transform: scale(1.025);
+}
+
+
+/* =========================================================
+   CARD INFO
+   ========================================================= */
+
+.results-listings .listing-info {
+  padding:
+    12px
+    4px
+    0;
+}
+
+.results-listings .listing-title-row {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+.results-listings .listing-title-row h3 {
+  margin: 0;
+
+  font-size: 16px;
+  line-height: 21px;
+
+  font-weight: 500;
+
+  color: #222;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.results-listings .rating {
+  flex-shrink: 0;
+
+  font-size: 14px;
+
+  color: #222;
+}
+
+.results-listings .listing-title {
+  margin:
+    4px
+    0
+    0;
+
+  font-size: 15px;
+  line-height: 20px;
+
+  color: #717171;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.results-listings .listing-property {
+  margin:
+    2px
+    0
+    0;
+
+  font-size: 15px;
+  line-height: 20px;
+
+  color: #717171;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.results-listings .listing-price {
+  margin:
+    8px
+    0
+    0;
+
+  display: flex;
+  align-items: baseline;
+
+  gap: 4px;
+
+  font-size: 15px;
+
+  color: #222;
+}
+
+.results-listings .listing-price strong {
+  font-weight: 600;
+}
+
+.results-listings .listing-price span {
+  color: #717171;
+}
+
+
+/* =========================================================
+   MAP AREA
+   ========================================================= */
+
+.results-map {
+  width: 100%;
+
+  position: sticky;
+
+  top: 92px;
+
+  height: calc(100vh - 120px);
+
+  min-height: 560px;
+
+  border-radius: 18px;
+
+  overflow: hidden;
+
+  background: #f1f1f1;
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+
+/* make actual map fill */
+
+.results-map > * {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================================================
+   MAP IMAGE / MAP COMPONENT
+   ========================================================= */
+
+.results-map iframe,
+.results-map img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  border: 0;
+}
+
+
+/* =========================================================
+   MAP CONTROLS
+   ========================================================= */
+
+.results-map .map-controls {
+  position: absolute;
+
+  right: 18px;
+  top: 18px;
+
+  z-index: 20;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background: #fff;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.results-map .map-control {
+  width: 48px;
+  height: 48px;
+
+  border: 0;
+
+  background: #fff;
+
+  font-size: 25px;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.results-map .map-control + .map-control {
+  border-top: 1px solid #eee;
+}
+
+.results-map .map-control:hover {
+  background: #f7f7f7;
+}
+
+
+/* =========================================================
+   MAP PRICE MARKERS
+   ========================================================= */
+
+.map-price-marker {
+  position: absolute;
+
+  padding:
+    9px
+    13px;
+
+  border-radius: 22px;
+
+  background: #fff;
+
+  color: #222;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.20);
+
+  transform: translate(-50%, -50%);
+
+  z-index: 10;
+
+  cursor: pointer;
+
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    color 180ms ease;
+}
+
+.map-price-marker:hover {
+  transform:
+    translate(-50%, -50%)
+    scale(1.06);
+}
+
+.map-price-marker.active {
+  background: #222;
+  color: #fff;
+}
+
+
+/* =========================================================
+   MAP LOCATION PILL
+   ========================================================= */
+
+.map-location-pill {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  z-index: 15;
+
+  padding:
+    10px
+    16px;
+
+  border-radius: 24px;
+
+  background: #fff;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================================
+   PRICE INCLUDE FEES
+   ========================================================= */
+
+.price-fees {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 26px;
+
+  font-size: 16px;
+
+  font-weight: 500;
+
+  color: #222;
+}
+
+.price-fees-icon {
+  font-size: 27px;
+}
+
+
+/* =========================================================
+   FILTER / AMENITY BAR
+   ========================================================= */
+
+.results-filters {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding:
+    0
+    54px
+    8px;
+
+  overflow-x: auto;
+
+  scrollbar-width: none;
+}
+
+.results-filters::-webkit-scrollbar {
+  display: none;
+}
+
+
+.results-filter-chip {
+  flex-shrink: 0;
+
+  height: 40px;
+
+  padding:
+    0
+    16px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 22px;
+
+  background: #fff;
+
+  color: #222;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.results-filter-chip:hover {
+  border-color: #222;
+}
+
+.results-filter-chip.active {
+  background: #222;
+
+  border-color: #222;
+
+  color: #fff;
+}
+
+
+/* =========================================================
+   GUEST FAVOURITE
+   ========================================================= */
+
+.results-listings .favorite-button {
+  position: absolute;
+
+  right: 16px;
+  top: 16px;
+
+  width: 34px;
+  height: 34px;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-size: 30px;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  filter:
+    drop-shadow(0 1px 2px rgba(0,0,0,.5));
+
+  z-index: 5;
+}
+
+
+/* =========================================================
+   IMAGE DOTS
+   ========================================================= */
+
+.results-listings .image-dots {
+  position: absolute;
+
+  bottom: 12px;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  gap: 5px;
+
+  z-index: 5;
+}
+
+.results-listings .image-dots span {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: rgba(255,255,255,.75);
+}
+
+.results-listings .image-dots .active-dot {
+  background: #fff;
+}
+
+
+/* =========================================================
+   DESKTOP — LARGE SCREEN
+   ========================================================= */
+
+@media (min-width: 1400px) {
+
+  .results-layout {
+    grid-template-columns:
+      minmax(600px, 1fr)
+      48vw;
+
+    gap: 44px;
+
+    padding-left: 54px;
+    padding-right: 54px;
+  }
+
+  .results-listings .listing-grid {
+    column-gap: 26px;
+  }
+
+}
+
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .results-layout {
+    grid-template-columns:
+      minmax(0, 1fr)
+      45vw;
+
+    gap: 28px;
+
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .results-header {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .results-filters {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+
+  .results-listings .listing-grid {
+    column-gap: 18px;
+  }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .results-layout {
+    display: block;
+
+    padding:
+      0
+      24px
+      50px;
+  }
+
+  .results-map {
+    position: relative;
+
+    top: auto;
+
+    width: 100%;
+
+    height: 500px;
+
+    margin-top: 40px;
+  }
+
+  .results-listings .listing-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+  .results-header {
+    padding:
+      24px
+      20px
+      18px;
+  }
+
+  .results-header h2 {
+    font-size: 20px;
+    line-height: 26px;
+  }
+
+  .results-filters {
+    padding:
+      0
+      20px
+      8px;
+  }
+
+  .results-layout {
+    padding:
+      0
+      20px
+      40px;
+  }
+
+  .results-listings .listing-grid {
+    grid-template-columns: 1fr;
+
+    row-gap: 34px;
+  }
+
+  .results-listings .listing-image-wrapper {
+    aspect-ratio: 1.25 / 1;
+
+    border-radius: 14px;
+  }
+
+  .results-map {
+    height: 420px;
+
+    min-height: 0;
+
+    border-radius: 14px;
+
+    margin-top: 32px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .results-header {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .results-filters {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .results-layout {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .results-listings .listing-info {
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+}
+.destination-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 14px;
+  padding: 13px 15px;
+  border: 1px solid #dddddd;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.destination-input-wrapper span {
+  font-size: 20px;
+}
+
+.destination-input-wrapper input {
+  width: 100%;
+  border: 0;
+  outline: none;
+  font-size: 15px;
+  background: transparent;
+  color: #222;
+}
+
+.panel-search-button {
+  width: 100%;
+  margin-top: 14px;
+  padding: 14px;
+  border: 0;
+  border-radius: 10px;
+  background: #222;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.panel-search-button:hover {
+  background: #000;
+}
+/* =====================================================
+   AIRBNB PROFILE MENU
+===================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+}
+
+.navbar-inner {
+  position: relative;
+}
+
+.profile-button {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #f1efff;
+  color: #5b50b5;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-button:hover {
+  background: #e9e6fb;
+}
+
+.menu-button {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  background: #f7f7f7;
+  color: #222;
+  font-size: 21px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-button:hover {
+  background: #eeeeee;
+}
+
+/* DARK BACKDROP */
+
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+/* MENU */
+
+.profile-menu {
+  position: absolute;
+  top: 68px;
+  right: 0;
+
+  width: 332px;
+  max-height: calc(100vh - 90px);
+
+  overflow-y: auto;
+
+  background: #fff;
+  border-radius: 12px;
+
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.08);
+
+  padding: 8px 0;
+
+  z-index: 1001;
+
+  animation: menuAppear 0.16s ease-out;
+}
+
+@keyframes menuAppear {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* MENU ITEM */
+
+.profile-menu-item {
+  width: calc(100% - 16px);
+  margin: 0 8px;
+
+  height: 48px;
+
+  padding: 0 12px;
+
+  border: none;
+  border-radius: 4px;
+
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  color: #222;
+
+  font-size: 17px;
+  font-weight: 400;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.profile-menu-item:hover {
+  background: #f7f7f7;
+}
+
+/* FIRST SELECTED ITEM */
+
+.profile-menu-item.highlighted {
+  border: 2px solid #222;
+  border-radius: 0;
+  margin-top: 0;
+  margin-bottom: 3px;
+  font-weight: 500;
+}
+
+/* ICON */
+
+.menu-item-icon {
+  width: 22px;
+  min-width: 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 24px;
+  line-height: 1;
+}
+
+.empty-icon {
+  visibility: hidden;
+}
+
+/* DIVIDER */
+
+.menu-divider {
+  height: 1px;
+  background: #dddddd;
+
+  margin: 8px 16px;
+}
+
+/* HOST CARD */
+
+.host-menu-card {
+  width: calc(100% - 16px);
+  margin: 0 8px;
+
+  min-height: 78px;
+
+  border: none;
+  background: transparent;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+
+  text-align: left;
+
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.host-menu-card:hover {
+  background: #f7f7f7;
+}
+
+.host-menu-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.host-menu-text strong {
+  font-size: 17px;
+  font-weight: 600;
+  color: #222;
+}
+
+.host-menu-text span {
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+}
+
+.host-person {
+  font-size: 42px;
+  width: 55px;
+  text-align: center;
+}
+
+/* LOGOUT */
+
+.logout-item {
+  margin-bottom: 5px;
+}
+
+
+/* =====================================================
+   NAVBAR RIGHT SPACING
+===================================================== */
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.host-link {
+  margin-right: 12px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .desktop-nav {
+    display: none;
+  }
+
+  .host-link {
+    display: none;
+  }
+
+  .profile-menu {
+    position: fixed;
+
+    top: 72px;
+    right: 12px;
+
+    width: min(332px, calc(100vw - 24px));
+
+    max-height: calc(100vh - 84px);
+  }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 500px) {
+
+  .profile-button,
+  .menu-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .profile-menu {
+    top: 64px;
+  }
+
+  .profile-menu-item {
+    font-size: 16px;
+  }
+
+}
+/* =========================================================
+   PROFILE DROPDOWN — FINAL
+========================================================= */
+
+.profile-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: #f1efff !important;
+  color: #5b50b5 !important;
+
+  font-size: 17px !important;
+  font-weight: 600 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+}
+
+.profile-button:hover {
+  background: #e9e6fb !important;
+}
+
+
+.menu-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+
+  border: none !important;
+  border-radius: 50% !important;
+
+  background: #f7f7f7 !important;
+  color: #222 !important;
+
+  font-size: 20px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+}
+
+.menu-button:hover {
+  background: #eeeeee !important;
+}
+
+
+/* =========================================================
+   BACKDROP
+========================================================= */
+
+.menu-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+
+  background: transparent !important;
+
+  z-index: 9998 !important;
+}
+
+
+/* =========================================================
+   MAIN DROPDOWN
+========================================================= */
+
+.profile-menu {
+  position: absolute !important;
+
+  top: 70px !important;
+  right: 0 !important;
+
+  width: 332px !important;
+  min-width: 332px !important;
+  max-width: 332px !important;
+
+  max-height: calc(100vh - 90px) !important;
+
+  box-sizing: border-box !important;
+
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+
+  background: #ffffff !important;
+
+  border-radius: 12px !important;
+
+  padding: 8px !important;
+  margin: 0 !important;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.08) !important;
+
+  z-index: 9999 !important;
+
+  animation: profileMenuOpen 0.15s ease-out !important;
+}
+
+@keyframes profileMenuOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   MENU ITEMS
+========================================================= */
+
+.profile-menu .profile-menu-item {
+  width: 100% !important;
+  height: 48px !important;
+  min-height: 48px !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 0 12px !important;
+
+  border: none !important;
+  border-radius: 6px !important;
+
+  background: transparent !important;
+
+  display: flex !important;
+
+  /* VERY IMPORTANT */
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  gap: 16px !important;
+
+  color: #222 !important;
+
+  font-family: inherit !important;
+  font-size: 17px !important;
+  font-weight: 400 !important;
+
+  line-height: 1 !important;
+
+  text-align: left !important;
+
+  white-space: nowrap !important;
+
+  cursor: pointer !important;
+}
+
+.profile-menu .profile-menu-item:hover {
+  background: #f7f7f7 !important;
+}
+
+
+/* =========================================================
+   FIRST ITEM
+========================================================= */
+
+.profile-menu .profile-menu-item.highlighted {
+  width: 100% !important;
+  height: 48px !important;
+
+  margin: 0 0 3px 0 !important;
+
+  border: 2px solid #222 !important;
+  border-radius: 0 !important;
+
+  background: #fff !important;
+
+  font-weight: 500 !important;
+}
+
+
+/* =========================================================
+   ICON
+========================================================= */
+
+.profile-menu .menu-item-icon {
+  width: 24px !important;
+  min-width: 24px !important;
+  height: 24px !important;
+
+  display: flex !important;
+
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  flex-shrink: 0 !important;
+
+  font-size: 24px !important;
+  line-height: 1 !important;
+}
+
+
+/* =========================================================
+   DIVIDER
+========================================================= */
+
+.profile-menu .menu-divider {
+  width: calc(100% - 16px) !important;
+  height: 1px !important;
+
+  margin: 8px !important;
+
+  padding: 0 !important;
+
+  background: #dddddd !important;
+
+  flex-shrink: 0 !important;
+}
+
+
+/* =========================================================
+   BECOME A HOST
+========================================================= */
+
+.profile-menu .host-menu-card {
+  width: 100% !important;
+  min-height: 82px !important;
+
+  box-sizing: border-box !important;
+
+  margin: 0 !important;
+  padding: 10px 12px !important;
+
+  border: none !important;
+  border-radius: 6px !important;
+
+  background: transparent !important;
+
+  display: flex !important;
+  flex-direction: row !important;
+
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  text-align: left !important;
+
+  cursor: pointer !important;
+}
+
+.profile-menu .host-menu-card:hover {
+  background: #f7f7f7 !important;
+}
+
+
+.host-menu-text {
+  display: flex !important;
+
+  flex-direction: column !important;
+
+  align-items: flex-start !important;
+
+  justify-content: center !important;
+
+  gap: 4px !important;
+}
+
+.host-menu-text strong {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+
+  line-height: 22px !important;
+
+  color: #222 !important;
+}
+
+.host-menu-text span {
+  font-size: 14px !important;
+
+  line-height: 19px !important;
+
+  color: #666 !important;
+}
+
+.host-person {
+  width: 55px !important;
+  min-width: 55px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  font-size: 38px !important;
+}
+
+
+/* =========================================================
+   EMPTY ICON
+========================================================= */
+
+.profile-menu .empty-icon {
+  visibility: hidden !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+.profile-menu::-webkit-scrollbar {
+  width: 7px;
+}
+
+.profile-menu::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.profile-menu::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 10px;
+}
+
+.profile-menu::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+
+/* =========================================================
+   NAVBAR RIGHT
+========================================================= */
+
+.navbar-right {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.host-link {
+  margin-right: 10px !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .host-link {
+    display: none !important;
+  }
+
+  .profile-menu {
+    position: fixed !important;
+
+    top: 72px !important;
+    right: 12px !important;
+    left: auto !important;
+
+    width: min(332px, calc(100vw - 24px)) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 24px) !important;
+
+    max-height: calc(100vh - 84px) !important;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .profile-button,
+  .menu-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+  }
+
+  .profile-menu {
+    top: 64px !important;
+    right: 10px !important;
+
+    width: calc(100vw - 20px) !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+
+  .profile-menu .profile-menu-item {
+    font-size: 16px !important;
+  }
+}
+/* ===== COMPACT PROFILE MENU ===== */
+
+.profile-menu {
+  width: 300px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
+  padding: 6px !important;
+  border-radius: 12px !important;
+}
+
+.profile-menu .profile-menu-item {
+  height: 42px !important;
+  min-height: 42px !important;
+  padding: 0 10px !important;
+  gap: 14px !important;
+  font-size: 16px !important;
+}
+
+.profile-menu .profile-menu-item.highlighted {
+  height: 42px !important;
+  margin-bottom: 2px !important;
+}
+
+.profile-menu .menu-item-icon {
+  width: 22px !important;
+  min-width: 22px !important;
+  height: 22px !important;
+  font-size: 21px !important;
+}
+
+.profile-menu .menu-divider {
+  margin: 6px 10px !important;
+  width: calc(100% - 20px) !important;
+}
+
+.profile-menu .host-menu-card {
+  min-height: 70px !important;
+  padding: 8px 10px !important;
+}
+
+.host-menu-text {
+  gap: 2px !important;
+}
+
+.host-menu-text strong {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+.host-menu-text span {
+  font-size: 13px !important;
+  line-height: 17px !important;
+}
+
+.host-person {
+  width: 45px !important;
+  min-width: 45px !important;
+  font-size: 32px !important;
+}
+
+
+/* Mobile */
+@media (max-width: 768px) {
+  .profile-menu {
+    width: 300px !important;
+    min-width: 300px !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
+
+@media (max-width: 500px) {
+  .profile-menu {
+    width: calc(100vw - 24px) !important;
+    min-width: 0 !important;
+    max-width: calc(100vw - 24px) !important;
+  }
+}
+/* =========================================================
+   DARK MODE — GLOBAL
+========================================================= */
+
+html.dark-mode {
+  color-scheme: dark;
+}
+
+html.dark-mode body {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+html.dark-mode .home-page,
+html.dark-mode main {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+html.dark-mode .navbar,
+html.dark-mode .navbar-inner {
+  background: #121212 !important;
+}
+
+html.dark-mode .navbar {
+  border-bottom: 1px solid #2f2f2f;
+}
+
+html.dark-mode .logo-text {
+  color: #ff385c !important;
+}
+
+html.dark-mode .nav-category {
+  color: #a5a5a5 !important;
+}
+
+html.dark-mode .nav-category.active {
+  color: #ffffff !important;
+}
+
+html.dark-mode .nav-category.active::after {
+  background: #ffffff !important;
+}
+
+html.dark-mode .host-link {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-link:hover {
+  background: #242424 !important;
+}
+
+html.dark-mode .profile-avatar {
+  background: #292544 !important;
+  color: #c4baff !important;
+}
+
+html.dark-mode .menu-button {
+  background: #242424 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .menu-button:hover {
+  background: #333333 !important;
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+html.dark-mode .search-wrapper {
+  background: #121212 !important;
+  border-color: #2f2f2f !important;
+}
+
+html.dark-mode .search-bar {
+  background: #242424 !important;
+  border-color: #444444 !important;
+
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark-mode .search-item:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .search-item-active {
+  background: #333333 !important;
+}
+
+html.dark-mode .search-label {
+  color: #ffffff !important;
+}
+
+html.dark-mode .search-value {
+  color: #a5a5a5 !important;
+}
+
+html.dark-mode .search-divider {
+  background: #555555 !important;
+}
+
+html.dark-mode .search-button {
+  background: #e31c5f !important;
+}
+
+html.dark-mode .search-button:hover {
+  background: #d41450 !important;
+}
+
+
+/* =========================================================
+   SEARCH POPUPS
+========================================================= */
+
+html.dark-mode .search-panel {
+  background: #242424 !important;
+
+  color: #ffffff !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark-mode .panel-title {
+  color: #dddddd !important;
+}
+
+html.dark-mode .destination-option:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .destination-option strong {
+  color: #ffffff !important;
+}
+
+html.dark-mode .destination-option span {
+  color: #aaaaaa !important;
+}
+
+html.dark-mode .destination-input-wrapper {
+  background: #2b2b2b !important;
+  border-color: #555555 !important;
+}
+
+html.dark-mode .destination-input-wrapper input {
+  color: #ffffff !important;
+}
+
+html.dark-mode .destination-input-wrapper input::placeholder {
+  color: #999999 !important;
+}
+
+html.dark-mode .panel-search-button {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+html.dark-mode .calendar-toggle {
+  background: #333333 !important;
+}
+
+html.dark-mode .calendar-toggle-active {
+  background: #555555 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-header h3 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-header button {
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-days span {
+  color: #999999 !important;
+}
+
+html.dark-mode .calendar-days button {
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-days button:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .calendar-days button.date-selected {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+html.dark-mode .calendar-days button.date-in-range {
+  background: #333333 !important;
+}
+
+html.dark-mode .date-options button {
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .date-options button:hover,
+html.dark-mode .date-options .date-option-active {
+  border-color: #ffffff !important;
+}
+
+
+/* =========================================================
+   GUEST PANEL
+========================================================= */
+
+html.dark-mode .guest-row {
+  border-color: #444444 !important;
+}
+
+html.dark-mode .guest-info strong {
+  color: #ffffff !important;
+}
+
+html.dark-mode .guest-info span {
+  color: #999999 !important;
+}
+
+html.dark-mode .guest-controls button {
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .guest-controls button:hover {
+  border-color: #ffffff !important;
+}
+
+html.dark-mode .guest-controls button.disabled {
+  color: #555555 !important;
+  border-color: #444444 !important;
+}
+
+
+/* =========================================================
+   CATEGORY BAR
+========================================================= */
+
+html.dark-mode .category-wrapper {
+  background: #121212 !important;
+}
+
+html.dark-mode .category-item {
+  background: #242424 !important;
+  border-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .category-item:hover {
+  background: #333333 !important;
+  border-color: #666666 !important;
+}
+
+html.dark-mode .category-item-selected,
+html.dark-mode .category-active {
+  background: #ffffff !important;
+  border-color: #ffffff !important;
+  color: #111111 !important;
+}
+
+html.dark-mode .filter-button {
+  background: #242424 !important;
+  border-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .filter-button:hover {
+  background: #333333 !important;
+}
+
+
+/* =========================================================
+   HOME SECTIONS
+========================================================= */
+
+html.dark-mode .home-section {
+  background: #121212 !important;
+}
+
+html.dark-mode .section-heading-row h2 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .section-arrow {
+  background: #242424 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .section-arrow:hover {
+  background: #333333 !important;
+}
+
+
+/* =========================================================
+   LISTING CARDS
+========================================================= */
+
+html.dark-mode .listing-card {
+  background: #121212 !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .listing-title-row h3 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .rating {
+  color: #ffffff !important;
+}
+
+html.dark-mode .listing-title {
+  color: #a5a5a5 !important;
+}
+
+html.dark-mode .listing-property {
+  color: #999999 !important;
+}
+
+html.dark-mode .listing-price {
+  color: #dddddd !important;
+}
+
+html.dark-mode .listing-price strong {
+  color: #ffffff !important;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+html.dark-mode .experience-card h3 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .experience-card p {
+  color: #999999 !important;
+}
+
+html.dark-mode .experience-image-wrapper {
+  background: #242424 !important;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+html.dark-mode .site-footer,
+html.dark-mode .footer-inner {
+  background: #1b1b1b !important;
+}
+
+html.dark-mode .site-footer {
+  border-color: #333333 !important;
+}
+
+html.dark-mode .footer-column h3 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .footer-column a {
+  color: #cccccc !important;
+}
+
+html.dark-mode .footer-column a:hover {
+  color: #ffffff !important;
+}
+
+html.dark-mode .footer-bottom {
+  border-color: #333333 !important;
+}
+
+html.dark-mode .footer-legal,
+html.dark-mode .footer-right button {
+  color: #cccccc !important;
+}
+
+
+/* =========================================================
+   PROFILE MENU
+========================================================= */
+
+html.dark-mode .profile-menu {
+  background: #242424 !important;
+
+  border-color: #444444 !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.65) !important;
+}
+
+html.dark-mode .profile-menu .profile-menu-item {
+  color: #ffffff !important;
+}
+
+html.dark-mode .profile-menu .profile-menu-item:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .profile-menu .profile-menu-item.highlighted {
+  background: #242424 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+html.dark-mode .profile-menu .menu-item-icon {
+  color: #ffffff !important;
+}
+
+html.dark-mode .profile-menu .menu-divider {
+  background: #444444 !important;
+}
+
+
+/* =========================================================
+   HOST CARD
+========================================================= */
+
+html.dark-mode .profile-menu .host-menu-card {
+  background: transparent !important;
+}
+
+html.dark-mode .profile-menu .host-menu-card:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .host-menu-text strong {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-menu-text span {
+  color: #aaaaaa !important;
+}
+
+
+/* =========================================================
+   DARK MODE TOGGLE
+========================================================= */
+
+.theme-toggle-item {
+  width: 100% !important;
+  height: 42px !important;
+  min-height: 42px !important;
+
+  padding: 0 10px !important;
+
+  border: none !important;
+  border-radius: 6px !important;
+
+  background: transparent !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  color: #222222 !important;
+
+  font-size: 16px !important;
+
+  cursor: pointer !important;
+}
+
+.theme-toggle-item:hover {
+  background: #f7f7f7 !important;
+}
+
+.theme-toggle-left {
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+}
+
+
+/* SWITCH */
+
+.theme-switch {
+  width: 42px;
+  height: 24px;
+
+  padding: 3px;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 20px;
+
+  background: #d5d5d5;
+
+  box-sizing: border-box;
+
+  transition: background 0.2s ease;
+}
+
+.theme-switch-knob {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.2s ease;
+}
+
+.theme-switch-active {
+  background: #ff385c;
+}
+
+.theme-switch-active .theme-switch-knob {
+  transform: translateX(18px);
+}
+
+
+/* DARK TOGGLE */
+
+html.dark-mode .theme-toggle-item {
+  color: #ffffff !important;
+}
+
+html.dark-mode .theme-toggle-item:hover {
+  background: #333333 !important;
+}
+
+html.dark-mode .theme-switch {
+  background: #555555;
+}
+
+html.dark-mode .theme-switch-active {
+  background: #ff385c;
+}
+
+
+/* =========================================================
+   DETAIL PAGE
+========================================================= */
+
+html.dark-mode .detail-header {
+  background: #121212 !important;
+  border-color: #333333 !important;
+}
+
+html.dark-mode .back-button {
+  color: #ffffff !important;
+}
+
+html.dark-mode .back-button:hover {
+  background: #242424 !important;
+}
+
+html.dark-mode .detail-title-section h1 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .detail-meta {
+  color: #dddddd !important;
+}
+
+html.dark-mode .detail-section h2,
+html.dark-mode .host-section h2,
+html.dark-mode .similar-section h2 {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-section p,
+html.dark-mode .description,
+html.dark-mode .map-location,
+html.dark-mode .similar-info p {
+  color: #aaaaaa !important;
+}
+
+html.dark-mode .detail-divider,
+html.dark-mode .similar-section {
+  border-color: #333333 !important;
+}
+
+html.dark-mode .host-avatar {
+  background: #292544 !important;
+  color: #c4baff !important;
+}
+
+html.dark-mode .amenity-item {
+  color: #dddddd !important;
+}
+
+
+/* =========================================================
+   RESERVATION CARD
+========================================================= */
+
+html.dark-mode .reservation-card {
+  background: #242424 !important;
+
+  border-color: #444444 !important;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark-mode .reservation-price strong,
+html.dark-mode .price-row,
+html.dark-mode .reservation-total {
+  color: #ffffff !important;
+}
+
+html.dark-mode .reservation-price span,
+html.dark-mode .reservation-note,
+html.dark-mode .reservation-field span {
+  color: #999999 !important;
+}
+
+html.dark-mode .reservation-fields,
+html.dark-mode .reservation-field + .reservation-field,
+html.dark-mode .guest-field {
+  border-color: #666666 !important;
+}
+
+html.dark-mode .reservation-field strong,
+html.dark-mode .guest-field strong {
+  color: #ffffff !important;
+}
+
+html.dark-mode .guest-field small {
+  color: #aaaaaa !important;
+}
+
+html.dark-mode .reservation-total {
+  border-color: #444444 !important;
+}
+
+
+/* =========================================================
+   MAP
+========================================================= */
+
+html.dark-mode .listing-map,
+html.dark-mode .airbnb-map,
+html.dark-mode .results-map {
+  background: #242424 !important;
+}
+
+html.dark-mode .price-marker,
+html.dark-mode .location-marker,
+html.dark-mode .map-price-marker,
+html.dark-mode .map-location-pill,
+html.dark-mode .map-expand-button,
+html.dark-mode .map-zoom-controls,
+html.dark-mode .map-zoom-controls button {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+
+html.dark-mode .map-price-marker.active {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+
+/* =========================================================
+   COMPACT SEARCH
+========================================================= */
+
+html.dark-mode .compact-search {
+  background: #242424 !important;
+  border-color: #444444 !important;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.55) !important;
+}
+
+html.dark-mode .compact-search-part {
+  color: #ffffff !important;
+}
+
+html.dark-mode .compact-divider {
+  background: #555555 !important;
+}
+
+html.dark-mode .compact-search-button {
+  background: #e31c5f !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+html.dark-mode .mobile-app-banner {
+  background: #121212 !important;
+  border-color: #333333 !important;
+}
+
+html.dark-mode .mobile-search {
+  background: #242424 !important;
+  border-color: #444444 !important;
+}
+
+html.dark-mode .mobile-search-icon,
+html.dark-mode .mobile-search-text {
+  color: #ffffff !important;
+}
+
+html.dark-mode .mobile-bottom-nav {
+  background: #181818 !important;
+  border-color: #333333 !important;
+}
+
+html.dark-mode .bottom-nav-item {
+  color: #999999 !important;
+}
+
+html.dark-mode .bottom-nav-item.active {
+  color: #ff385c !important;
+}
+
+
+/* =========================================================
+   SMOOTH TRANSITION
+========================================================= */
+
+body,
+.navbar,
+.navbar-inner,
+.search-wrapper,
+.search-bar,
+.search-panel,
+.category-wrapper,
+.category-item,
+.listing-card,
+.profile-menu,
+.reservation-card,
+.site-footer,
+.mobile-bottom-nav {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+/* =========================================================
+   SEARCH RESULTS - AIRBNB STYLE SPLIT LAYOUT
+   ========================================================= */
+
+.search-results-page {
+  width: 100%;
+  padding: 34px 54px 50px;
+  box-sizing: border-box;
+}
+
+.search-results-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.search-results-header h1 {
+  margin: 0;
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.search-results-header p {
+  margin: 7px 0 0;
+  font-size: 15px;
+  color: #717171;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  white-space: nowrap;
+  font-size: 15px;
+}
+
+.price-info span {
+  font-size: 24px;
+}
+
+.price-info strong {
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LEFT LIST + RIGHT MAP
+   ========================================================= */
+
+.search-results-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, 0.95fr);
+  gap: 32px;
+  align-items: start;
+  width: 100%;
+}
+
+
+/* LEFT SIDE */
+
+.search-results-list {
+  min-width: 0;
+  width: 100%;
+}
+
+.search-results-list .listing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 24px;
+  width: 100%;
+}
+
+
+/* RIGHT SIDE MAP */
+
+.search-results-map {
+  position: sticky;
+  top: 100px;
+  height: calc(100vh - 125px);
+  min-height: 600px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.search-results-map > * {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Map ke andar Leaflet ho to */
+
+.search-results-map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px;
+}
+
+
+/* =========================================================
+   SEARCH RESULT CARDS
+   ========================================================= */
+
+.search-results-list .listing-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.search-results-list .listing-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1.08 / 1;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.search-results-list .listing-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
+
+.no-search-results {
+  min-height: 450px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.no-results-icon {
+  font-size: 60px;
+  margin-bottom: 18px;
+}
+
+.no-search-results h2 {
+  margin: 0 0 8px;
+  font-size: 25px;
+}
+
+.no-search-results p {
+  margin: 0 0 24px;
+  color: #717171;
+}
+
+.no-search-results button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   SEARCH LOADING
+   ========================================================= */
+
+.search-loading {
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.search-loading p {
+  margin: 0;
+  color: #717171;
+}
+
+
+/* =========================================================
+   DESKTOP - LARGE SCREEN
+   ========================================================= */
+
+@media (min-width: 1400px) {
+  .search-results-page {
+    padding-left: 54px;
+    padding-right: 54px;
+  }
+
+  .search-results-layout {
+    grid-template-columns: minmax(0, 1.03fr) minmax(500px, 0.97fr);
+    gap: 36px;
+  }
+
+  .search-results-list .listing-grid {
+    gap: 36px 26px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .search-results-page {
+    padding: 30px 28px 40px;
+  }
+
+  .search-results-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 0.9fr);
+    gap: 22px;
+  }
+
+  .search-results-list .listing-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .search-results-map {
+    min-height: 550px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .search-results-page {
+    padding: 24px 18px 40px;
+  }
+
+  .search-results-header {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+
+  .search-results-header h1 {
+    font-size: 22px;
+  }
+
+  .price-info {
+    font-size: 14px;
+  }
+
+  .search-results-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .search-results-list {
+    width: 100%;
+  }
+
+  .search-results-list .listing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-results-map {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: 420px;
+    min-height: 420px;
+    order: -1;
+    border-radius: 16px;
+  }
+
+  .search-results-map .leaflet-container {
+    border-radius: 16px;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 500px) {
+  .search-results-page {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .search-results-header h1 {
+    font-size: 20px;
+  }
+
+  .search-results-map {
+    height: 340px;
+    min-height: 340px;
+  }
+}
+/* =====================================================
+   SEARCH PAGE - 2 PROPERTY CARDS + RIGHT MAP
+   ===================================================== */
+
+.search-results-page {
+  width: 100%;
+  padding: 28px 54px 50px;
+  box-sizing: border-box;
+}
+
+.search-results-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(480px, 0.95fr);
+  gap: 34px;
+  width: 100%;
+  align-items: start;
+}
+
+.search-results-list {
+  width: 100%;
+  min-width: 0;
+}
+
+.search-results-list .listing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px 26px;
+  width: 100%;
+}
+
+.search-results-list .listing-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.search-results-list .listing-image-wrapper {
+  width: 100%;
+  aspect-ratio: 1.08 / 1;
+  border-radius: 17px;
+  overflow: hidden;
+}
+
+.search-results-list .listing-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.search-results-map {
+  position: sticky;
+  top: 90px;
+  width: 100%;
+  height: calc(100vh - 115px);
+  min-height: 650px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.search-results-map > * {
+  width: 100%;
+  height: 100%;
+}
+
+.search-results-map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  border-radius: 20px;
+}
+
+
+/* Header */
+
+.search-results-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.search-results-header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.search-results-header p {
+  margin: 7px 0 0;
+  color: #717171;
+  font-size: 15px;
+}
+
+.price-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.price-info span {
+  font-size: 22px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1200px) {
+  .search-results-layout {
+    grid-template-columns: minmax(0, 1fr) minmax(400px, 0.9fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .search-results-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .search-results-map {
+    position: relative;
+    top: 0;
+    height: 500px;
+    min-height: 500px;
+    order: -1;
+  }
+
+  .search-results-list .listing-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .search-results-page {
+    padding: 24px 16px 40px;
+  }
+
+  .search-results-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-results-list .listing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-results-map {
+    height: 380px;
+    min-height: 380px;
+  }
+}
+/* =========================================
+   LISTING CARD CLICK
+========================================= */
+
+.listing-card {
+  cursor: pointer;
+}
+
+.listing-card:focus-visible {
+  outline: 2px solid #222;
+  outline-offset: 4px;
+}
+
+
+/* =========================================
+   DETAIL PAGE
+========================================= */
+
+.show-amenities {
+  margin-top: 24px;
+  padding: 13px 20px;
+  border: 0;
+  border-radius: 10px;
+  background: #f2f2f2;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.listing-detail-error {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.listing-detail-error h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.listing-detail-error p {
+  color: #717171;
+  margin: 0 0 12px;
+}
+
+.listing-detail-error button {
+  border: 0;
+  border-radius: 10px;
+  padding: 13px 22px;
+  background: #222;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.listing-detail-loading {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+/* =========================================================
+   LISTING DETAIL PAGE
+========================================================= */
+
+.listing-page {
+  background: #fff;
+  min-height: 100vh;
+  color: #222;
+}
+
+.listing-container {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 32px 24px 100px;
+}
+
+.listing-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.listing-topbar h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.7px;
+}
+
+.listing-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.listing-actions button {
+  border: none;
+  background: transparent;
+  text-decoration: underline;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* gallery */
+
+.listing-gallery {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  height: 450px;
+  gap: 4px;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.gallery-main {
+  height: 450px;
+  overflow: hidden;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+  position: relative;
+}
+
+.gallery-small {
+  overflow: hidden;
+}
+
+.gallery-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.show-photos {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  border: none;
+  background: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,.15);
+}
+
+/* layout */
+
+.listing-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+  gap: 70px;
+  margin-top: 38px;
+}
+
+.listing-left {
+  min-width: 0;
+}
+
+.listing-intro {
+  padding-bottom: 28px;
+  border-bottom: 1px solid #ddd;
+}
+
+.listing-intro h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+}
+
+.listing-intro p {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.listing-intro strong {
+  font-size: 15px;
+}
+
+/* host */
+
+.host-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 28px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.host-avatar,
+.big-host-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.host-avatar {
+  width: 52px;
+  height: 52px;
+  font-size: 20px;
+}
+
+.host-section div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.host-section span {
+  color: #717171;
+}
+
+/* features */
+
+.stay-features {
+  padding: 24px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.feature-row {
+  display: flex;
+  gap: 20px;
+  padding: 15px 0;
+}
+
+.feature-icon {
+  width: 30px;
+  font-size: 23px;
+}
+
+.feature-row strong {
+  display: block;
+  font-size: 17px;
+}
+
+.feature-row p {
+  margin: 5px 0 0;
+  color: #717171;
+}
+
+/* sections */
+
+.detail-section {
+  padding: 35px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.detail-section h2 {
+  margin: 0 0 25px;
+  font-size: 25px;
+}
+
+.description {
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+/* amenities */
+
+.amenities-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+
+.amenity {
+  display: flex;
+  gap: 15px;
+  font-size: 17px;
+}
+
+.amenity span:first-child {
+  font-weight: bold;
+}
+
+.show-amenities {
+  margin-top: 28px;
+  padding: 14px 20px;
+  border: 1px solid #222;
+  background: white;
+  border-radius: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* location */
+
+.location-card {
+  height: 330px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.location-map {
+  height: 100%;
+  background:
+    linear-gradient(30deg, transparent 48%, #ddd 49%, #ddd 51%, transparent 52%),
+    linear-gradient(-25deg, transparent 48%, #ddd 49%, #ddd 51%, transparent 52%),
+    #eee;
+  background-size: 150px 150px;
+  position: relative;
+}
+
+.map-road {
+  position: absolute;
+  background: #fff;
+  height: 5px;
+  width: 100%;
+}
+
+.road-one {
+  top: 35%;
+  transform: rotate(18deg);
+}
+
+.road-two {
+  top: 65%;
+  transform: rotate(-12deg);
+}
+
+.road-three {
+  top: 50%;
+  transform: rotate(50deg);
+}
+
+.location-pin {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #222;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+/* reviews */
+
+.reviews-empty {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.reviews-empty > span {
+  font-size: 42px;
+}
+
+.reviews-empty p {
+  color: #717171;
+}
+
+/* host profile */
+
+.meet-host {
+  display: grid;
+  grid-template-columns: 390px 1fr;
+  gap: 60px;
+}
+
+.host-profile-card {
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 5px 25px rgba(0,0,0,.12);
+  display: grid;
+  grid-template-columns: 1fr 110px;
+  gap: 12px;
+  align-items: center;
+}
+
+.big-host-avatar {
+  width: 90px;
+  height: 90px;
+  font-size: 30px;
+}
+
+.host-profile-card h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.host-profile-card > span {
+  grid-column: 1;
+  color: #717171;
+}
+
+.host-stats {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+}
+
+.host-stats div {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.host-stats span {
+  font-size: 12px;
+}
+
+.host-description h3 {
+  font-size: 21px;
+}
+
+.host-description p {
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.host-description button {
+  padding: 14px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #f2f2f2;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* things */
+
+.things-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.things-grid span {
+  font-size: 28px;
+}
+
+.things-grid h3 {
+  margin-bottom: 8px;
+}
+
+.things-grid p {
+  color: #717171;
+  line-height: 1.4;
+}
+
+/* booking */
+
+.booking-sidebar {
+  position: relative;
+}
+
+.booking-card {
+  position: sticky;
+  top: 110px;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 5px 25px rgba(0,0,0,.16);
+  background: white;
+}
+
+.booking-price strong {
+  font-size: 23px;
+}
+
+.booking-price span {
+  color: #717171;
+}
+
+.booking-rating {
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+.booking-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid #888;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 25px;
+}
+
+.booking-fields > div {
+  padding: 12px;
+}
+
+.booking-fields > div:first-child {
+  border-right: 1px solid #888;
+}
+
+.booking-fields label,
+.booking-guest label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.booking-fields input {
+  width: 100%;
+  border: none;
+  font-size: 13px;
+  outline: none;
+  background: transparent;
+}
+
+.booking-guest {
+  border: 1px solid #888;
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 13px;
+}
+
+.guest-control {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.guest-control > div {
+  display: flex;
+  gap: 5px;
+}
+
+.guest-control button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #777;
+  background: white;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.price-details {
+  margin-top: 25px;
+}
+
+.price-details > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+.price-details hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 15px 0;
+}
+
+.price-details .total {
+  font-size: 17px;
+}
+
+.reserve-button {
+  width: 100%;
+  border: none;
+  border-radius: 12px;
+  background: #e91e63;
+  color: white;
+  padding: 16px;
+  margin-top: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reserve-button:hover {
+  background: #d81b60;
+}
+
+.charge-message {
+  text-align: center;
+  color: #666;
+  font-size: 13px;
+  margin-bottom: 0;
+}
+
+/* loading */
+
+.listing-loading {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 35px;
+  height: 35px;
+  border: 4px solid #ddd;
+  border-top-color: #222;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* error */
+
+.listing-error {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.listing-error button {
+  margin-top: 20px;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 10px;
+  background: #222;
+  color: white;
+  cursor: pointer;
+}
+
+/* mobile */
+
+.mobile-reserve {
+  display: none;
+}
+
+@media (max-width: 900px) {
+
+  .listing-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-sidebar {
+    display: none;
+  }
+
+  .mobile-reserve {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid #ddd;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .mobile-reserve button {
+    background: #e91e63;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-weight: 700;
+  }
+
+  .meet-host {
+    grid-template-columns: 1fr;
+  }
+
+  .things-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+
+  .listing-container {
+    padding: 20px 14px 80px;
+  }
+
+  .listing-topbar h1 {
+    font-size: 22px;
+  }
+
+  .listing-actions {
+    gap: 5px;
+  }
+
+  .listing-actions button {
+    font-size: 13px;
+  }
+
+  .listing-gallery {
+    height: 300px;
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-main {
+    height: 300px;
+  }
+
+  .gallery-right {
+    display: none;
+  }
+
+  .amenities-list {
+    grid-template-columns: 1fr;
+  }
+
+  .host-profile-card {
+    grid-template-columns: 1fr;
+  }
+
+  .host-stats {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+/* =========================================================
+   DETAIL PAGE - DARK MODE FIX
+   ========================================================= */
+
+html.dark-mode .listing-detail-page,
+html.dark-mode .detail-page {
+  background: #111111 !important;
+  color: #f5f5f5 !important;
+}
+
+/* Main detail text */
+html.dark-mode .listing-detail-page h1,
+html.dark-mode .listing-detail-page h2,
+html.dark-mode .listing-detail-page h3,
+html.dark-mode .listing-detail-page p,
+html.dark-mode .listing-detail-page span,
+html.dark-mode .listing-detail-page strong,
+html.dark-mode .detail-page h1,
+html.dark-mode .detail-page h2,
+html.dark-mode .detail-page h3,
+html.dark-mode .detail-page p,
+html.dark-mode .detail-page span,
+html.dark-mode .detail-page strong {
+  color: inherit;
+}
+
+/* =========================================================
+   BOOKING CARD
+   ========================================================= */
+
+html.dark-mode .booking-card,
+html.dark-mode .reservation-card,
+html.dark-mode .booking-box,
+html.dark-mode .reserve-card {
+  background: #1f1f1f !important;
+  color: #ffffff !important;
+  border: 1px solid #3a3a3a !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+html.dark-mode .booking-card *,
+html.dark-mode .reservation-card *,
+html.dark-mode .booking-box *,
+html.dark-mode .reserve-card * {
+  color: #ffffff !important;
+}
+
+/* Price */
+html.dark-mode .booking-card .price,
+html.dark-mode .reservation-card .price,
+html.dark-mode .booking-box .price,
+html.dark-mode .reserve-card .price {
+  color: #ffffff !important;
+}
+
+/* Old / crossed price */
+html.dark-mode .booking-card del,
+html.dark-mode .reservation-card del,
+html.dark-mode .booking-box del,
+html.dark-mode .reserve-card del {
+  color: #999999 !important;
+}
+
+/* Date + guest input boxes */
+html.dark-mode .booking-card input,
+html.dark-mode .booking-card select,
+html.dark-mode .booking-card button,
+html.dark-mode .reservation-card input,
+html.dark-mode .reservation-card select,
+html.dark-mode .reservation-card button,
+html.dark-mode .booking-box input,
+html.dark-mode .booking-box select,
+html.dark-mode .booking-box button,
+html.dark-mode .reserve-card input,
+html.dark-mode .reserve-card select,
+html.dark-mode .reserve-card button {
+  color: #ffffff !important;
+}
+
+/* Date boxes */
+html.dark-mode .booking-card .date-box,
+html.dark-mode .booking-card .booking-date,
+html.dark-mode .reservation-card .date-box,
+html.dark-mode .reservation-card .booking-date,
+html.dark-mode .booking-box .date-box,
+html.dark-mode .booking-box .booking-date {
+  background: #252525 !important;
+  border-color: #555555 !important;
+}
+
+/* Guest section */
+html.dark-mode .booking-card .guest-section,
+html.dark-mode .booking-card .guests-section,
+html.dark-mode .reservation-card .guest-section,
+html.dark-mode .reservation-card .guests-section {
+  background: #252525 !important;
+  border-color: #555555 !important;
+}
+
+/* Plus minus buttons */
+html.dark-mode .booking-card .guest-button,
+html.dark-mode .booking-card .counter-button,
+html.dark-mode .reservation-card .guest-button,
+html.dark-mode .reservation-card .counter-button {
+  background: #252525 !important;
+  border: 1px solid #777 !important;
+  color: #ffffff !important;
+}
+
+/* Cancellation box */
+html.dark-mode .booking-card .cancellation,
+html.dark-mode .booking-card .free-cancellation,
+html.dark-mode .reservation-card .cancellation,
+html.dark-mode .reservation-card .free-cancellation {
+  background: #2a2a2a !important;
+  color: #dddddd !important;
+}
+
+/* Reserve button */
+html.dark-mode .booking-card .reserve-button,
+html.dark-mode .reservation-card .reserve-button,
+html.dark-mode .booking-box .reserve-button,
+html.dark-mode .reserve-card .reserve-button {
+  background: #e91e63 !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* =========================================================
+   HOST CARD
+   ========================================================= */
+
+html.dark-mode .host-profile-card {
+  background: #181818 !important;
+  border-color: #333333 !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3) !important;
+}
+
+html.dark-mode .host-profile-card * {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   HOST PLACEHOLDER PHOTO
+   ========================================================= */
+
+/*
+   Agar actual host image nahi hai to ye random
+   travel/lifestyle image show karega.
+*/
+
+.host-avatar,
+.host-photo,
+.host-profile-avatar,
+.host-image {
+  background-image: url("https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80") !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* Agar avatar ke andar initial "S" hai to hide it */
+.host-avatar > span,
+.host-photo > span,
+.host-profile-avatar > span,
+.host-image > span {
+  opacity: 0 !important;
+}
+
+/* =========================================================
+   HOST INFO
+   ========================================================= */
+
+html.dark-mode .host-section,
+html.dark-mode .host-details,
+html.dark-mode .host-info {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-section *,
+html.dark-mode .host-details *,
+html.dark-mode .host-info * {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   AMENITIES
+   ========================================================= */
+
+html.dark-mode .amenities-section,
+html.dark-mode .amenities-list {
+  color: #ffffff !important;
+}
+
+html.dark-mode .amenities-section *,
+html.dark-mode .amenities-list * {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+html.dark-mode .description-section,
+html.dark-mode .description-section p {
+  color: #eeeeee !important;
+}
+
+/* =========================================================
+   CALENDAR
+   ========================================================= */
+
+html.dark-mode .calendar-section,
+html.dark-mode .detail-calendar {
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-section *,
+html.dark-mode .detail-calendar * {
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-section button,
+html.dark-mode .detail-calendar button {
+  background: transparent;
+  color: #ffffff !important;
+}
+
+html.dark-mode .calendar-section .selected,
+html.dark-mode .detail-calendar .selected {
+  background: #222222 !important;
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   MAP
+   ========================================================= */
+
+html.dark-mode .detail-map-section {
+  border-color: #333333 !important;
+}
+
+/* =========================================================
+   THINGS TO KNOW
+   ========================================================= */
+
+html.dark-mode .things-to-know,
+html.dark-mode .things-to-know * {
+  color: #ffffff !important;
+}
+
+html.dark-mode .things-to-know p {
+  color: #bbbbbb !important;
+}
+
+/* =========================================================
+   STICKY DETAIL NAV
+   ========================================================= */
+
+html.dark-mode .detail-sticky-nav {
+  background: #111111 !important;
+  border-color: #333333 !important;
+}
+
+html.dark-mode .detail-sticky-nav * {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   REPORT LISTING
+   ========================================================= */
+
+html.dark-mode .report-listing,
+html.dark-mode .report-listing * {
+  color: #bbbbbb !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  html.dark-mode .booking-card,
+  html.dark-mode .reservation-card,
+  html.dark-mode .booking-box,
+  html.dark-mode .reserve-card {
+    background: #1f1f1f !important;
+  }
+
+  .host-avatar,
+  .host-photo,
+  .host-profile-avatar,
+  .host-image {
+    background-size: cover !important;
+  }
+}
+/* HOST PROFILE PHOTO */
+.host-avatar {
+  width: 96px !important;
+  height: 96px !important;
+  min-width: 96px !important;
+  border-radius: 50% !important;
+  overflow: hidden !important;
+  background: #eeeeee !important;
+  padding: 0 !important;
+}
+
+.host-avatar img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+}
+
+/* dark mode */
+html.dark-mode .host-avatar {
+  background: #eeeeee !important;
+}
+
+html.dark-mode .host-avatar img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+/* Host stats - dark mode */
+html.dark-mode .host-stats strong,
+html.dark-mode .host-stats .stat-value {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-stats span,
+html.dark-mode .host-stats .stat-label {
+  color: #b0b0b0 !important;
+}
+
+/* Specifically the months hosting value */
+html.dark-mode .host-stats > div:last-child strong,
+html.dark-mode .host-stats > div:last-child .stat-value {
+  color: #ffffff !important;
+}
+/* =========================================================
+   HOST SECTION - PROPER DARK MODE
+   ========================================================= */
+
+html.dark-mode .host-profile-card {
+  background: #181818 !important;
+  border: 1px solid #2f2f2f !important;
+  color: #ffffff !important;
+}
+
+/* Host name */
+html.dark-mode .host-profile-card h2,
+html.dark-mode .host-profile-card h3,
+html.dark-mode .host-profile-card strong {
+  color: #ffffff !important;
+}
+
+/* Host description / normal text */
+html.dark-mode .host-profile-card p,
+html.dark-mode .host-profile-card span {
+  color: #dddddd !important;
+}
+
+/* =========================================================
+   HOST STATS
+   ========================================================= */
+
+html.dark-mode .host-stats {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-stats > div {
+  border-bottom: 1px solid #454545 !important;
+}
+
+html.dark-mode .host-stats strong,
+html.dark-mode .host-stats .stat-value {
+  color: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.dark-mode .host-stats span,
+html.dark-mode .host-stats .stat-label {
+  color: #bdbdbd !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Specifically 64 / 4.91 / 4 */
+html.dark-mode .host-stats div:nth-child(1) strong,
+html.dark-mode .host-stats div:nth-child(2) strong,
+html.dark-mode .host-stats div:nth-child(3) strong {
+  color: #ffffff !important;
+}
+
+/* Reviews / Rating / Months hosting */
+html.dark-mode .host-stats div:nth-child(1) span,
+html.dark-mode .host-stats div:nth-child(2) span,
+html.dark-mode .host-stats div:nth-child(3) span {
+  color: #bdbdbd !important;
+}
+
+/* =========================================================
+   SUPERHOST
+   ========================================================= */
+
+html.dark-mode .host-superhost,
+html.dark-mode .host-badge,
+html.dark-mode .superhost-badge {
+  color: #eeeeee !important;
+}
+
+/* =========================================================
+   HOST DETAILS - RIGHT SIDE
+   ========================================================= */
+
+html.dark-mode .host-details {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-details h2,
+html.dark-mode .host-details h3,
+html.dark-mode .host-details strong {
+  color: #ffffff !important;
+}
+
+html.dark-mode .host-details p,
+html.dark-mode .host-details span {
+  color: #dddddd !important;
+}
+
+/* =========================================================
+   MESSAGE HOST BUTTON
+   ========================================================= */
+
+html.dark-mode .message-host,
+html.dark-mode .message-host-button {
+  background: #f1f1f1 !important;
+  color: #181818 !important;
+  border: none !important;
+}
+
+html.dark-mode .message-host:hover,
+html.dark-mode .message-host-button:hover {
+  background: #ffffff !important;
+  color: #111111 !important;
+}
+
+/* Button ke andar ka text */
+html.dark-mode .message-host *,
+html.dark-mode .message-host-button * {
+  color: #181818 !important;
+}
+
+/* =========================================================
+   HOST AVATAR
+   ========================================================= */
+
+.host-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.host-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* =========================================================
+   HOST SECTION DIVIDERS
+   ========================================================= */
+
+html.dark-mode .host-section,
+html.dark-mode .host-content {
+  border-color: #353535 !important;
+}
+
+html.dark-mode .host-section hr,
+html.dark-mode .host-content hr {
+  border-color: #353535 !important;
+}
+/* =====================================================
+   FINAL NAVBAR
+===================================================== */
+
+.navbar {
+  width: 100%;
+  position: relative;
+  z-index: 1000;
+  background: #ffffff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.navbar-inner {
+  width: 100%;
+  min-height: 104px;
+  padding: 0 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.airbnb-logo {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.airbnb-logo-mark {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.airbnb-logo-mark svg {
+  width: 35px;
+  height: 35px;
+  fill: #ff385c;
+}
+
+.airbnb-logo-text {
+  color: #ff385c;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -1.5px;
+}
+
+/* =====================================================
+   CATEGORIES
+===================================================== */
+
+.desktop-nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-category {
+  position: relative;
+
+  border: 0;
+  background: transparent;
+
+  padding: 18px 4px 21px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #717171;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+}
+
+.nav-category:hover {
+  color: #222222;
+}
+
+.nav-category.active {
+  color: #222222;
+  font-weight: 600;
+}
+
+.nav-category.active::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 7px;
+
+  height: 3px;
+
+  border-radius: 10px;
+
+  background: #222222;
+}
+
+.nav-category-icon {
+  font-size: 31px;
+  line-height: 1;
+}
+
+/* =====================================================
+   RIGHT
+===================================================== */
+
+.navbar-right {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.host-link {
+  border: 0;
+  background: transparent;
+
+  padding: 12px 15px;
+
+  color: #222222;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.host-link:hover {
+  background: #f7f7f7;
+  border-radius: 24px;
+}
+
+.profile-button {
+  width: 48px;
+  height: 48px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #f0edff;
+  color: #6546d9;
+
+  font-size: 18px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.menu-button {
+  width: 48px;
+  height: 48px;
+
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  cursor: pointer;
+}
+
+.menu-button span {
+  width: 17px;
+  height: 2px;
+
+  background: #222222;
+
+  border-radius: 10px;
+}
+
+.menu-button:hover {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================
+   DROPDOWN
+===================================================== */
+
+.profile-menu {
+  position: absolute;
+
+  top: 60px;
+  right: 0;
+
+  width: 360px;
+  max-height: calc(100vh - 80px);
+
+  overflow-y: auto;
+
+  padding: 8px 0;
+
+  background: #ffffff;
+
+  border: 1px solid #eeeeee;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.18);
+
+  z-index: 5000;
+}
+
+/* =====================================================
+   MENU ITEMS
+===================================================== */
+
+.profile-menu-item {
+  width: 100%;
+  min-height: 49px;
+
+  border: 0;
+  background: transparent;
+
+  padding: 0 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 17px;
+
+  color: #222222;
+
+  font-size: 17px;
+  font-weight: 400;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.profile-menu-item:hover {
+  background: #f7f7f7;
+}
+
+.menu-icon {
+  width: 20px;
+  min-width: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 23px;
+  line-height: 1;
+
+  color: #222222;
+}
+
+.no-icon-item {
+  padding-left: 60px;
+}
+
+/* =====================================================
+   DIVIDER
+===================================================== */
+
+.menu-divider {
+  height: 1px;
+
+  margin: 8px 20px;
+
+  background: #dddddd;
+}
+
+/* =====================================================
+   BECOME HOST
+===================================================== */
+
+.become-host {
+  width: 100%;
+
+  border: 0;
+  background: transparent;
+
+  padding: 14px 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+.become-host:hover {
+  background: #f7f7f7;
+}
+
+.become-host-content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.become-host-content strong {
+  display: block;
+
+  color: #222222;
+
+  font-size: 17px;
+  line-height: 21px;
+  font-weight: 700;
+}
+
+.become-host-content span {
+  display: block;
+
+  max-width: 245px;
+
+  color: #717171;
+
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.host-emoji {
+  flex-shrink: 0;
+
+  font-size: 34px;
+  line-height: 1;
+}
+
+/* =====================================================
+   DARK MODE TOGGLE
+===================================================== */
+
+.theme-item {
+  gap: 17px;
+}
+
+.theme-label {
+  flex: 1;
+}
+
+.theme-switch {
+  width: 42px;
+  height: 24px;
+
+  border-radius: 20px;
+
+  background: #dddddd;
+
+  padding: 3px;
+
+  display: flex;
+  align-items: center;
+
+  transition: 0.2s ease;
+}
+
+.theme-switch span {
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.25);
+
+  transition: 0.2s ease;
+}
+
+.theme-switch.on {
+  background: #222222;
+  justify-content: flex-end;
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+html.dark,
+html.dark body {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+html.dark .navbar {
+  background: #121212;
+  border-bottom-color: #333333;
+}
+
+html.dark .airbnb-logo-text {
+  color: #ff385c;
+}
+
+html.dark .nav-category {
+  color: #aaaaaa;
+}
+
+html.dark .nav-category:hover,
+html.dark .nav-category.active {
+  color: #ffffff;
+}
+
+html.dark .nav-category.active::after {
+  background: #ffffff;
+}
+
+html.dark .host-link {
+  color: #f5f5f5;
+}
+
+html.dark .host-link:hover {
+  background: #252525;
+}
+
+html.dark .profile-button {
+  background: #292342;
+  color: #c8bcff;
+}
+
+html.dark .menu-button {
+  background: #242424;
+  border-color: #444444;
+}
+
+html.dark .menu-button span {
+  background: #ffffff;
+}
+
+html.dark .profile-menu {
+  background: #242424;
+  border-color: #3a3a3a;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+html.dark .profile-menu-item {
+  color: #f5f5f5;
+}
+
+html.dark .profile-menu-item:hover {
+  background: #303030;
+}
+
+html.dark .menu-icon {
+  color: #f5f5f5;
+}
+
+html.dark .menu-divider {
+  background: #444444;
+}
+
+html.dark .become-host:hover {
+  background: #303030;
+}
+
+html.dark .become-host-content strong {
+  color: #ffffff;
+}
+
+html.dark .become-host-content span {
+  color: #aaaaaa;
+}
+
+html.dark .theme-switch {
+  background: #555555;
+}
+
+html.dark .theme-switch.on {
+  background: #ffffff;
+}
+
+html.dark .theme-switch.on span {
+  background: #222222;
+}
+
+/* =====================================================
+   DARK MODE PAGE
+===================================================== */
+
+html.dark .home-page {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+html.dark .page-content {
+  background: #121212;
+}
+
+html.dark .home-section h2 {
+  color: #ffffff;
+}
+
+html.dark .section-heading-row h2 {
+  color: #ffffff;
+}
+
+html.dark .listing-title {
+  color: #eeeeee;
+}
+
+html.dark .listing-property {
+  color: #aaaaaa;
+}
+
+html.dark .listing-price {
+  color: #eeeeee;
+}
+
+html.dark .experience-card h3 {
+  color: #eeeeee;
+}
+
+html.dark .experience-card p {
+  color: #aaaaaa;
+}
+
+html.dark .search-results-page {
+  background: #121212;
+  color: #f5f5f5;
+}
+
+html.dark .search-results-header h1 {
+  color: #ffffff;
+}
+
+html.dark .search-results-header p {
+  color: #aaaaaa;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
+
+  .navbar-inner {
+    padding: 0 20px;
+  }
+
+  .desktop-nav {
+    gap: 16px;
+  }
+
+  .nav-category {
+    font-size: 14px;
+  }
+
+  .nav-category-icon {
+    font-size: 25px;
+  }
+
+  .host-link {
+    display: none;
+  }
+
+}
+
+@media (max-width: 650px) {
+
+  .navbar-inner {
+    min-height: 85px;
+    padding: 0 14px;
+  }
+
+  .airbnb-logo-text {
+    display: none;
+  }
+
+  .desktop-nav {
+    position: static;
+    transform: none;
+
+    gap: 8px;
+  }
+
+  .nav-category {
+    flex-direction: column;
+    gap: 3px;
+
+    padding: 8px 3px 14px;
+
+    font-size: 10px;
+  }
+
+  .nav-category-icon {
+    font-size: 22px;
+  }
+
+  .profile-button,
+  .menu-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .profile-menu {
+    top: 54px;
+    right: 0;
+
+    width: min(
+      360px,
+      calc(100vw - 20px)
+    );
+  }
+
+}
+/* =========================================================
+   FINAL FULL DARK MODE
+   ========================================================= */
+
+html.dark {
+  background: #121212 !important;
+  color-scheme: dark;
+}
+
+html.dark body {
+  margin: 0;
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+/* ---------------------------------------------------------
+   ENTIRE APP
+--------------------------------------------------------- */
+
+html.dark #__next,
+html.dark main,
+html.dark .home-page,
+html.dark .page-content {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+/* ---------------------------------------------------------
+   NAVBAR
+--------------------------------------------------------- */
+
+html.dark .navbar {
+  background: #121212 !important;
+  border-bottom: 1px solid #292929 !important;
+}
+
+html.dark .navbar-inner {
+  background: #121212 !important;
+}
+
+/* ---------------------------------------------------------
+   SEARCH AREA
+--------------------------------------------------------- */
+
+html.dark .search-area,
+html.dark .search-section,
+html.dark .search-container,
+html.dark .search-wrapper {
+  background: #121212 !important;
+  border-color: #292929 !important;
+}
+
+/* Search pill */
+
+html.dark .search-bar,
+html.dark .search-box,
+html.dark .search-container-inner {
+  background: #242424 !important;
+  border-color: #444 !important;
+  color: #fff !important;
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Search fields */
+
+html.dark .search-field {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+html.dark .search-field:hover,
+html.dark .search-field.active {
+  background: #303030 !important;
+}
+
+html.dark .search-field label,
+html.dark .search-label {
+  color: #fff !important;
+}
+
+html.dark .search-field span,
+html.dark .search-placeholder,
+html.dark .search-value {
+  color: #aaa !important;
+}
+
+/* Search button */
+
+html.dark .search-button {
+  background: #ff385c !important;
+  color: white !important;
+  border: none !important;
+}
+
+html.dark .search-button:hover {
+  background: #e31c5f !important;
+}
+
+/* ---------------------------------------------------------
+   SEARCH DROPDOWNS
+--------------------------------------------------------- */
+
+html.dark .search-dropdown,
+html.dark .destination-dropdown,
+html.dark .calendar-dropdown,
+html.dark .guest-dropdown,
+html.dark .search-popover {
+  background: #242424 !important;
+  color: #f5f5f5 !important;
+  border-color: #444 !important;
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark .search-dropdown *,
+html.dark .destination-dropdown *,
+html.dark .calendar-dropdown *,
+html.dark .guest-dropdown * {
+  color: inherit;
+}
+
+html.dark .destination-option:hover,
+html.dark .guest-row:hover,
+html.dark .calendar-day:hover {
+  background: #303030 !important;
+}
+
+/* ---------------------------------------------------------
+   ALL HOME SECTIONS
+--------------------------------------------------------- */
+
+html.dark .home-section {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .home-section h1,
+html.dark .home-section h2,
+html.dark .home-section h3 {
+  color: #fff !important;
+}
+
+html.dark .section-heading-row {
+  color: #fff !important;
+}
+
+html.dark .section-heading-row h2 {
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------------
+   LISTING CARDS
+--------------------------------------------------------- */
+
+html.dark .listing-card {
+  background: transparent !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .listing-info {
+  background: transparent !important;
+}
+
+html.dark .listing-title-row h3 {
+  color: #fff !important;
+}
+
+html.dark .listing-title {
+  color: #ddd !important;
+}
+
+html.dark .listing-property {
+  color: #999 !important;
+}
+
+html.dark .listing-price {
+  color: #ddd !important;
+}
+
+html.dark .listing-price strong {
+  color: #fff !important;
+}
+
+html.dark .listing-price span {
+  color: #888 !important;
+}
+
+html.dark .rating {
+  color: #ddd !important;
+}
+
+/* ---------------------------------------------------------
+   IMAGE PLACEHOLDER
+--------------------------------------------------------- */
+
+html.dark .image-placeholder {
+  background: #292929 !important;
+  color: #aaa !important;
+}
+
+/* ---------------------------------------------------------
+   EXPERIENCE CARDS
+--------------------------------------------------------- */
+
+html.dark .experience-card {
+  background: transparent !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .experience-card h3 {
+  color: #fff !important;
+}
+
+html.dark .experience-card p {
+  color: #aaa !important;
+}
+
+/* ---------------------------------------------------------
+   CONTINUE SEARCHING
+--------------------------------------------------------- */
+
+html.dark .continue-searching {
+  background: #121212 !important;
+  color: #fff !important;
+  border-color: #292929 !important;
+}
+
+html.dark .continue-searching * {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------
+   SEARCH RESULTS
+--------------------------------------------------------- */
+
+html.dark .search-results-section,
+html.dark .search-results-layout,
+html.dark .search-results-list,
+html.dark .search-results-map {
+  background: #121212 !important;
+  color: #fff !important;
+}
+
+html.dark .empty-state {
+  background: #121212 !important;
+  color: #fff !important;
+}
+
+html.dark .empty-state h2 {
+  color: #fff !important;
+}
+
+html.dark .empty-state p {
+  color: #aaa !important;
+}
+
+/* ---------------------------------------------------------
+   CATEGORY BAR - IF PRESENT
+--------------------------------------------------------- */
+
+html.dark .category-bar {
+  background: #121212 !important;
+  border-color: #292929 !important;
+}
+
+html.dark .category-item {
+  color: #aaa !important;
+}
+
+html.dark .category-item.active {
+  color: #fff !important;
+}
+
+/* ---------------------------------------------------------
+   PROFILE MENU
+--------------------------------------------------------- */
+
+html.dark .profile-menu {
+  background: #242424 !important;
+  color: #fff !important;
+  border: 1px solid #3a3a3a !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+html.dark .profile-menu-item {
+  color: #f5f5f5 !important;
+  background: transparent !important;
+}
+
+html.dark .profile-menu-item:hover {
+  background: #303030 !important;
+}
+
+html.dark .menu-icon {
+  color: #fff !important;
+}
+
+html.dark .menu-divider {
+  background: #444 !important;
+}
+
+html.dark .become-host {
+  background: transparent !important;
+  color: #fff !important;
+}
+
+html.dark .become-host:hover {
+  background: #303030 !important;
+}
+
+html.dark .become-host-content strong {
+  color: #fff !important;
+}
+
+html.dark .become-host-content span {
+  color: #aaa !important;
+}
+
+html.dark .no-icon-item {
+  color: #f5f5f5 !important;
+}
+
+/* ---------------------------------------------------------
+   DARK MODE SWITCH
+--------------------------------------------------------- */
+
+html.dark .theme-switch {
+  background: #555 !important;
+}
+
+html.dark .theme-switch.on {
+  background: #fff !important;
+}
+
+html.dark .theme-switch.on span {
+  background: #222 !important;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+
+html.dark footer,
+html.dark .footer {
+  background: #0d0d0d !important;
+  color: #eee !important;
+  border-color: #292929 !important;
+}
+
+html.dark footer *,
+html.dark .footer * {
+  color: inherit;
+}
+
+/* ---------------------------------------------------------
+   BUTTONS
+--------------------------------------------------------- */
+
+html.dark button {
+  color: inherit;
+}
+
+html.dark .back-button,
+html.dark .secondary-button {
+  background: #292929 !important;
+  color: #fff !important;
+  border-color: #444 !important;
+}
+
+/* ---------------------------------------------------------
+   SCROLLBAR
+--------------------------------------------------------- */
+
+html.dark ::-webkit-scrollbar {
+  width: 10px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #121212;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+/* =========================================================
+   LISTING DETAIL PAGE - FULL DARK MODE
+========================================================= */
+
+html.dark body {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+/* Main detail page */
+
+html.dark .listing-detail-page,
+html.dark .detail-page,
+html.dark .listing-detail {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+/* Main content */
+
+html.dark .listing-detail-page *,
+html.dark .detail-page *,
+html.dark .listing-detail * {
+  border-color: #3a3a3a;
+}
+
+/* =========================================================
+   HEADINGS / TEXT
+========================================================= */
+
+html.dark .listing-detail-page h1,
+html.dark .listing-detail-page h2,
+html.dark .listing-detail-page h3,
+html.dark .listing-detail-page h4,
+html.dark .detail-page h1,
+html.dark .detail-page h2,
+html.dark .detail-page h3,
+html.dark .detail-page h4 {
+  color: #ffffff !important;
+}
+
+html.dark .listing-detail-page p,
+html.dark .detail-page p,
+html.dark .listing-detail-page span,
+html.dark .detail-page span {
+  color: #dddddd;
+}
+
+/* =========================================================
+   HOST SECTION
+========================================================= */
+
+html.dark .host-section,
+html.dark .host-card,
+html.dark .host-profile,
+html.dark .host-info,
+html.dark .host-details {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .host-section h2,
+html.dark .host-section h3,
+html.dark .host-card h2,
+html.dark .host-card h3,
+html.dark .host-profile h2,
+html.dark .host-profile h3 {
+  color: #ffffff !important;
+}
+
+html.dark .host-section p,
+html.dark .host-card p,
+html.dark .host-profile p,
+html.dark .host-details p {
+  color: #dddddd !important;
+}
+
+/* =========================================================
+   HOST PROFILE CARD
+========================================================= */
+
+html.dark .host-profile-card,
+html.dark .host-info-card {
+  background: #171717 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #292929 !important;
+
+  box-shadow:
+    0 4px 18px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .host-profile-card *,
+html.dark .host-info-card * {
+  color: inherit;
+}
+
+/* =========================================================
+   HOST STATS
+========================================================= */
+
+html.dark .host-stats {
+  color: #ffffff !important;
+}
+
+html.dark .host-stats strong,
+html.dark .host-stats b {
+  color: #ffffff !important;
+}
+
+html.dark .host-stats span {
+  color: #bdbdbd !important;
+}
+
+/* =========================================================
+   SUPERHOST
+========================================================= */
+
+html.dark .superhost,
+html.dark .superhost-badge {
+  color: #dddddd !important;
+}
+
+/* =========================================================
+   MESSAGE HOST BUTTON
+========================================================= */
+
+html.dark .message-host,
+html.dark .message-host-button {
+  background: #292929 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #555555 !important;
+}
+
+html.dark .message-host:hover,
+html.dark .message-host-button:hover {
+  background: #353535 !important;
+}
+
+/* =========================================================
+   BOOKING CARD
+========================================================= */
+
+html.dark .booking-card,
+html.dark .reservation-card,
+html.dark .booking-box,
+html.dark .reserve-card {
+  background: #242424 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #3d3d3d !important;
+
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* Everything inside booking card */
+
+html.dark .booking-card *,
+html.dark .reservation-card *,
+html.dark .booking-box *,
+html.dark .reserve-card * {
+  color: inherit;
+}
+
+/* Price */
+
+html.dark .booking-card .price,
+html.dark .booking-card .price strong,
+html.dark .reservation-card .price,
+html.dark .reserve-card .price {
+  color: #ffffff !important;
+}
+
+html.dark .booking-card .price span,
+html.dark .reservation-card .price span,
+html.dark .reserve-card .price span {
+  color: #aaaaaa !important;
+}
+
+/* =========================================================
+   DATE INPUTS
+========================================================= */
+
+html.dark .booking-card input,
+html.dark .reservation-card input,
+html.dark .booking-box input,
+html.dark .reserve-card input {
+  background: #242424 !important;
+  color: #ffffff !important;
+
+  border-color: #666666 !important;
+}
+
+html.dark .booking-card input::placeholder,
+html.dark .reservation-card input::placeholder {
+  color: #888888 !important;
+}
+
+html.dark .booking-card label,
+html.dark .reservation-card label,
+html.dark .booking-box label,
+html.dark .reserve-card label {
+  color: #aaaaaa !important;
+}
+
+/* Date boxes */
+
+html.dark .date-picker,
+html.dark .date-input,
+html.dark .booking-dates {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+/* =========================================================
+   GUEST SELECTOR
+========================================================= */
+
+html.dark .guest-selector,
+html.dark .guest-box,
+html.dark .guest-input {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+
+html.dark .guest-selector button,
+html.dark .guest-box button {
+  background: #292929 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #666666 !important;
+}
+
+html.dark .guest-selector button:hover,
+html.dark .guest-box button:hover {
+  background: #3a3a3a !important;
+}
+
+/* =========================================================
+   RESERVE BUTTON
+========================================================= */
+
+html.dark .reserve-button,
+html.dark .booking-card .reserve-button,
+html.dark .reservation-card .reserve-button {
+  background: #ff385c !important;
+  color: #ffffff !important;
+
+  border: none !important;
+}
+
+html.dark .reserve-button:hover {
+  background: #e31c5f !important;
+}
+
+/* =========================================================
+   PRICE BREAKDOWN
+========================================================= */
+
+html.dark .price-breakdown,
+html.dark .booking-summary,
+html.dark .price-summary {
+  color: #dddddd !important;
+}
+
+html.dark .price-breakdown *,
+html.dark .booking-summary *,
+html.dark .price-summary * {
+  color: inherit;
+}
+
+html.dark .total-price,
+html.dark .total-price strong {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   THINGS TO KNOW
+========================================================= */
+
+html.dark .things-to-know,
+html.dark .things-know {
+  background: #121212 !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .things-to-know h2,
+html.dark .things-to-know h3 {
+  color: #ffffff !important;
+}
+
+html.dark .things-to-know p,
+html.dark .things-to-know span {
+  color: #bbbbbb !important;
+}
+
+/* =========================================================
+   AMENITIES
+========================================================= */
+
+html.dark .amenities-section,
+html.dark .amenities {
+  background: #121212 !important;
+  color: #ffffff !important;
+}
+
+html.dark .amenity-item {
+  color: #dddddd !important;
+}
+
+html.dark .amenity-item span {
+  color: #dddddd !important;
+}
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+html.dark .location-section,
+html.dark .location-container {
+  background: #121212 !important;
+  color: #ffffff !important;
+}
+
+html.dark .location-section h2,
+html.dark .location-section h3 {
+  color: #ffffff !important;
+}
+
+html.dark .location-section p {
+  color: #aaaaaa !important;
+}
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+html.dark .reviews-section,
+html.dark .reviews-container {
+  background: #121212 !important;
+  color: #ffffff !important;
+}
+
+html.dark .reviews-section h2,
+html.dark .reviews-section h3 {
+  color: #ffffff !important;
+}
+
+html.dark .review-card {
+  background: #171717 !important;
+  color: #eeeeee !important;
+
+  border-color: #333333 !important;
+}
+
+html.dark .review-card p {
+  color: #cccccc !important;
+}
+
+/* =========================================================
+   HOSTING INFO
+========================================================= */
+
+html.dark .hosting-info,
+html.dark .host-response {
+  color: #dddddd !important;
+}
+
+html.dark .hosting-info strong,
+html.dark .host-response strong {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+html.dark .back-button {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+
+html.dark .back-button:hover {
+  background: #333333 !important;
+}
+
+/* =========================================================
+   DETAIL DIVIDERS
+========================================================= */
+
+html.dark .listing-detail-page hr,
+html.dark .detail-page hr {
+  border-color: #383838 !important;
+  background: #383838 !important;
+}
+
+/* =========================================================
+   STICKY BOOKING CARD
+========================================================= */
+
+html.dark .sticky-booking-card {
+  background: #242424 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #3d3d3d !important;
+}
+
+/* =========================================================
+   FORCE COMMON WHITE BACKGROUNDS DARK
+========================================================= */
+
+html.dark .white-card,
+html.dark .card-white,
+html.dark .detail-card {
+  background: #171717 !important;
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   INPUT DATE ICON
+========================================================= */
+
+html.dark input[type="date"] {
+  color-scheme: dark;
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  html.dark .booking-card,
+  html.dark .reservation-card,
+  html.dark .reserve-card {
+    background: #242424 !important;
+  }
+
+}
+/* =========================================================
+   DARK MODE - SEARCH DATE CALENDAR / FILTER MODAL
+========================================================= */
+
+html.dark .calendar-panel,
+html.dark .calendar-modal,
+html.dark .date-picker-panel,
+html.dark .date-picker,
+html.dark .calendar-dropdown,
+html.dark .date-dropdown,
+html.dark .calendar-container,
+html.dark .search-calendar,
+html.dark .search-date-panel {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #3f3f3f !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Calendar everything */
+
+html.dark .calendar-panel *,
+html.dark .calendar-modal *,
+html.dark .date-picker-panel *,
+html.dark .date-picker *,
+html.dark .calendar-dropdown *,
+html.dark .date-dropdown *,
+html.dark .calendar-container *,
+html.dark .search-calendar *,
+html.dark .search-date-panel * {
+  color: #f5f5f5;
+}
+
+/* Dates / flexible tabs */
+
+html.dark .calendar-tab,
+html.dark .calendar-tabs,
+html.dark .date-mode,
+html.dark .date-mode button {
+  background: #303030 !important;
+  color: #ffffff !important;
+  border-color: #444 !important;
+}
+
+html.dark .calendar-tab.active,
+html.dark .date-mode button.active {
+  background: #424242 !important;
+  color: #ffffff !important;
+}
+
+/* Month heading */
+
+html.dark .calendar-month,
+html.dark .calendar-month h3,
+html.dark .calendar-header,
+html.dark .calendar-header h3,
+html.dark .month-title {
+  color: #ffffff !important;
+}
+
+/* Weekday names */
+
+html.dark .calendar-weekday,
+html.dark .weekday,
+html.dark .calendar-day-name {
+  color: #999999 !important;
+}
+
+/* Individual days */
+
+html.dark .calendar-day,
+html.dark .date-day,
+html.dark .calendar-date,
+html.dark .day-button {
+  background: transparent !important;
+  color: #eeeeee !important;
+  border-color: transparent !important;
+}
+
+html.dark .calendar-day:hover,
+html.dark .date-day:hover,
+html.dark .calendar-date:hover,
+html.dark .day-button:hover {
+  background: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+/* Selected date */
+
+html.dark .calendar-day.selected,
+html.dark .calendar-day.active,
+html.dark .date-day.selected,
+html.dark .date-day.active,
+html.dark .calendar-date.selected,
+html.dark .calendar-date.active {
+  background: #ffffff !important;
+  color: #222222 !important;
+}
+
+/* Check-in / checkout range */
+
+html.dark .calendar-day.in-range,
+html.dark .date-day.in-range,
+html.dark .calendar-date.in-range {
+  background: #3a3a3a !important;
+  color: #ffffff !important;
+}
+
+/* Disabled dates */
+
+html.dark .calendar-day.disabled,
+html.dark .date-day.disabled,
+html.dark .calendar-date.disabled {
+  color: #555555 !important;
+  background: transparent !important;
+}
+
+/* Previous / next month buttons */
+
+html.dark .calendar-prev,
+html.dark .calendar-next,
+html.dark .calendar-arrow,
+html.dark .calendar-navigation button {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+}
+
+html.dark .calendar-prev:hover,
+html.dark .calendar-next:hover,
+html.dark .calendar-arrow:hover,
+html.dark .calendar-navigation button:hover {
+  background: #353535 !important;
+}
+
+/* Bottom flexible options */
+
+html.dark .flexible-options,
+html.dark .date-options,
+html.dark .calendar-options {
+  background: #242424 !important;
+  border-color: #444 !important;
+}
+
+html.dark .flexible-options button,
+html.dark .date-options button,
+html.dark .calendar-options button {
+  background: #242424 !important;
+  color: #eeeeee !important;
+  border-color: #555555 !important;
+}
+
+html.dark .flexible-options button:hover,
+html.dark .date-options button:hover,
+html.dark .calendar-options button:hover {
+  background: #353535 !important;
+}
+
+/* Exact dates button */
+
+html.dark .exact-dates,
+html.dark .exact-dates-button {
+  background: #ffffff !important;
+  color: #222222 !important;
+  border-color: #ffffff !important;
+}
+
+/* =========================================================
+   FORCE THE BIG WHITE CALENDAR CONTAINER DARK
+   ========================================================= */
+
+html.dark [class*="calendar"] {
+  color: #ffffff;
+}
+
+html.dark [class*="calendar"] h1,
+html.dark [class*="calendar"] h2,
+html.dark [class*="calendar"] h3,
+html.dark [class*="calendar"] h4,
+html.dark [class*="calendar"] span,
+html.dark [class*="calendar"] p,
+html.dark [class*="calendar"] button {
+  color: #eeeeee;
+}
+
+/* Don't let generic white backgrounds survive */
+
+html.dark [class*="calendar"][style*="background"],
+html.dark [class*="date"][style*="background"] {
+  background: #242424 !important;
+}
+/* =========================================================
+   DARK MODE - DESTINATION DROPDOWN
+========================================================= */
+
+/* Main destination popup */
+
+html.dark .destination-panel,
+html.dark .destination-dropdown,
+html.dark .destination-menu,
+html.dark .search-destination-dropdown,
+html.dark .suggested-destinations,
+html.dark .destination-picker {
+  background: #242424 !important;
+  color: #f5f5f5 !important;
+  border: 1px solid #3d3d3d !important;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Force everything inside visible */
+
+html.dark .destination-panel *,
+html.dark .destination-dropdown *,
+html.dark .destination-menu *,
+html.dark .search-destination-dropdown *,
+html.dark .suggested-destinations *,
+html.dark .destination-picker * {
+  color: #f5f5f5 !important;
+}
+
+/* Suggested destinations heading */
+
+html.dark .destination-panel h1,
+html.dark .destination-panel h2,
+html.dark .destination-panel h3,
+html.dark .destination-panel p,
+html.dark .destination-dropdown h1,
+html.dark .destination-dropdown h2,
+html.dark .destination-dropdown h3,
+html.dark .destination-dropdown p {
+  color: #eeeeee !important;
+}
+
+/* Search input */
+
+html.dark .destination-panel input,
+html.dark .destination-dropdown input,
+html.dark .destination-picker input {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border: 1px solid #555555 !important;
+}
+
+html.dark .destination-panel input::placeholder,
+html.dark .destination-dropdown input::placeholder {
+  color: #888888 !important;
+}
+
+/* Search input wrapper */
+
+html.dark .destination-search,
+html.dark .destination-input,
+html.dark .destination-search-box {
+  background: #242424 !important;
+  border-color: #555555 !important;
+  color: #ffffff !important;
+}
+
+/* Destination options */
+
+html.dark .destination-option,
+html.dark .destination-item,
+html.dark .suggested-destination,
+html.dark .destination-row {
+  background: transparent !important;
+  color: #eeeeee !important;
+  border-radius: 12px !important;
+}
+
+/* Hover */
+
+html.dark .destination-option:hover,
+html.dark .destination-item:hover,
+html.dark .suggested-destination:hover,
+html.dark .destination-row:hover {
+  background: #333333 !important;
+}
+
+/* Active destination */
+
+html.dark .destination-option.active,
+html.dark .destination-item.active,
+html.dark .suggested-destination.active,
+html.dark .destination-row.active {
+  background: #333333 !important;
+}
+
+/* Destination title */
+
+html.dark .destination-option strong,
+html.dark .destination-option h3,
+html.dark .destination-item strong,
+html.dark .destination-item h3 {
+  color: #ffffff !important;
+}
+
+/* Destination subtitle */
+
+html.dark .destination-option span,
+html.dark .destination-option small,
+html.dark .destination-item span,
+html.dark .destination-item small {
+  color: #aaaaaa !important;
+}
+
+/* Icons */
+
+html.dark .destination-icon,
+html.dark .destination-option-icon,
+html.dark .destination-item-icon {
+  background: #303030 !important;
+  color: #ffffff !important;
+}
+
+/* Blue icon boxes from current UI */
+
+html.dark .destination-option > div:first-child,
+html.dark .destination-item > div:first-child {
+  background: #303030 !important;
+}
+
+/* Scrollbar */
+
+html.dark .destination-dropdown::-webkit-scrollbar,
+html.dark .destination-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.dark .destination-dropdown::-webkit-scrollbar-track,
+html.dark .destination-panel::-webkit-scrollbar-track {
+  background: #242424;
+}
+
+html.dark .destination-dropdown::-webkit-scrollbar-thumb,
+html.dark .destination-panel::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 10px;
+}
+
+html.dark .destination-dropdown::-webkit-scrollbar-thumb:hover,
+html.dark .destination-panel::-webkit-scrollbar-thumb:hover {
+  background: #666666;
+}
+/* =========================================================
+   DARK MODE - GUESTS POPUP
+========================================================= */
+
+/* Main guest popup */
+
+html.dark .guest-dropdown,
+html.dark .guest-panel,
+html.dark .guest-menu,
+html.dark .guest-picker,
+html.dark .guests-dropdown,
+html.dark .guests-panel {
+  background: #242424 !important;
+  color: #ffffff !important;
+
+  border: 1px solid #3d3d3d !important;
+
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Force content visible */
+
+html.dark .guest-dropdown *,
+html.dark .guest-panel *,
+html.dark .guest-menu *,
+html.dark .guest-picker *,
+html.dark .guests-dropdown *,
+html.dark .guests-panel * {
+  color: #eeeeee !important;
+}
+
+/* Guest rows */
+
+html.dark .guest-row,
+html.dark .guest-item,
+html.dark .guest-option {
+  background: transparent !important;
+  color: #eeeeee !important;
+
+  border-color: #444444 !important;
+}
+
+/* Hover */
+
+html.dark .guest-row:hover,
+html.dark .guest-item:hover,
+html.dark .guest-option:hover {
+  background: #303030 !important;
+}
+
+/* Guest title */
+
+html.dark .guest-row strong,
+html.dark .guest-row h3,
+html.dark .guest-item strong,
+html.dark .guest-item h3 {
+  color: #ffffff !important;
+}
+
+/* Guest description */
+
+html.dark .guest-row p,
+html.dark .guest-row small,
+html.dark .guest-item p,
+html.dark .guest-item small {
+  color: #999999 !important;
+}
+
+/* =========================================================
+   PLUS / MINUS BUTTONS
+========================================================= */
+
+html.dark .guest-row button,
+html.dark .guest-item button,
+html.dark .guest-counter button,
+html.dark .guest-controls button {
+  width: 46px !important;
+  height: 46px !important;
+
+  border: 1px solid #777777 !important;
+  border-radius: 50% !important;
+
+  background: #242424 !important;
+  color: #ffffff !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+html.dark .guest-row button:hover,
+html.dark .guest-item button:hover,
+html.dark .guest-counter button:hover,
+html.dark .guest-controls button:hover {
+  background: #383838 !important;
+  border-color: #999999 !important;
+}
+
+/* Disabled buttons */
+
+html.dark .guest-row button:disabled,
+html.dark .guest-item button:disabled,
+html.dark .guest-counter button:disabled {
+  background: #242424 !important;
+  color: #666666 !important;
+  border-color: #555555 !important;
+  opacity: 1 !important;
+}
+
+/* Number */
+
+html.dark .guest-count,
+html.dark .guest-number,
+html.dark .guest-counter span {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   DIVIDERS
+========================================================= */
+
+html.dark .guest-dropdown hr,
+html.dark .guest-panel hr,
+html.dark .guest-menu hr,
+html.dark .guest-row + .guest-row {
+  border-color: #444444 !important;
+}
+
+/* =========================================================
+   SPECIFIC GUEST TYPES
+========================================================= */
+
+html.dark .adults,
+html.dark .children,
+html.dark .infants,
+html.dark .pets {
+  background: transparent !important;
+  color: #ffffff !important;
+}
+
+html.dark .adults *,
+html.dark .children *,
+html.dark .infants *,
+html.dark .pets * {
+  color: inherit !important;
+}
+
+/* =========================================================
+   AGE / DESCRIPTION
+========================================================= */
+
+html.dark .guest-age,
+html.dark .guest-description {
+  color: #999999 !important;
+}
+
+/* =========================================================
+   PETS DESCRIPTION
+========================================================= */
+
+html.dark .pets-description {
+  color: #999999 !important;
+}
+
+/* =========================================================
+   FORCE WHITE GUEST POPUP DARK
+========================================================= */
+
+html.dark [class*="guest"] {
+  color: #eeeeee;
+}
+
+html.dark [class*="guest"] h1,
+html.dark [class*="guest"] h2,
+html.dark [class*="guest"] h3,
+html.dark [class*="guest"] h4,
+html.dark [class*="guest"] span,
+html.dark [class*="guest"] p,
+html.dark [class*="guest"] label {
+  color: #eeeeee !important;
+}
+
+/* Don't make buttons inherit weird text */
+
+html.dark [class*="guest"] button {
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   GUEST POPUP SCROLLBAR
+========================================================= */
+
+html.dark .guest-dropdown::-webkit-scrollbar,
+html.dark .guest-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+html.dark .guest-dropdown::-webkit-scrollbar-track,
+html.dark .guest-panel::-webkit-scrollbar-track {
+  background: #242424;
+}
+
+html.dark .guest-dropdown::-webkit-scrollbar-thumb,
+html.dark .guest-panel::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 10px;
+}
+/* =========================================================
+   FINAL FIX — DARK MODE SEARCH DATE FIELD + DATE TOGGLE
+========================================================= */
+
+html.dark {
+  color-scheme: dark;
+}
+
+/* ---------------------------------------------------------
+   WHEN / ADD DATES ACTIVE SEARCH FIELD
+--------------------------------------------------------- */
+
+html.dark .search-field,
+html.dark .search-field.active,
+html.dark .search-field.selected,
+html.dark .search-field.open,
+html.dark .search-field:focus-within {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border-color: #555555 !important;
+  box-shadow: none !important;
+}
+
+html.dark .search-field.active *,
+html.dark .search-field.selected *,
+html.dark .search-field.open *,
+html.dark .search-field:focus-within * {
+  color: #ffffff !important;
+}
+
+html.dark .search-field.active span,
+html.dark .search-field.active p,
+html.dark .search-field.active div {
+  background: transparent !important;
+}
+
+html.dark .search-field.active .search-label,
+html.dark .search-field.active label {
+  color: #ffffff !important;
+}
+
+html.dark .search-field.active .search-value,
+html.dark .search-field.active .search-placeholder {
+  color: #aaaaaa !important;
+}
+
+/* ---------------------------------------------------------
+   DATE POPUP
+--------------------------------------------------------- */
+
+html.dark .calendar-popup,
+html.dark .calendar-container,
+html.dark .calendar-modal,
+html.dark .calendar-panel,
+html.dark .date-modal,
+html.dark .date-panel {
+  background: #242424 !important;
+  color: #ffffff !important;
+  border: 1px solid #444444 !important;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.65) !important;
+}
+
+/* Force all children */
+
+html.dark .calendar-popup *,
+html.dark .calendar-container *,
+html.dark .calendar-modal *,
+html.dark .calendar-panel *,
+html.dark .date-modal *,
+html.dark .date-panel * {
+  color: #eeeeee !important;
+}
+
+/* ---------------------------------------------------------
+   DATES / FLEXIBLE SEGMENTED CONTROL
+--------------------------------------------------------- */
+
+html.dark .date-toggle,
+html.dark .date-tabs,
+html.dark .date-mode-toggle,
+html.dark .calendar-toggle,
+html.dark .flexible-toggle,
+html.dark .date-options-toggle {
+  background: #303030 !important;
+  border: 1px solid #444444 !important;
+  color: #eeeeee !important;
+}
+
+/* Every button inside toggle */
+
+html.dark .date-toggle button,
+html.dark .date-tabs button,
+html.dark .date-mode-toggle button,
+html.dark .calendar-toggle button,
+html.dark .flexible-toggle button,
+html.dark .date-options-toggle button {
+  background: transparent !important;
+  color: #aaaaaa !important;
+  border: none !important;
+}
+
+/* Active Dates button */
+
+html.dark .date-toggle button.active,
+html.dark .date-tabs button.active,
+html.dark .date-mode-toggle button.active,
+html.dark .calendar-toggle button.active,
+html.dark .flexible-toggle button.active,
+html.dark .date-options-toggle button.active {
+  background: #3a3a3a !important;
+  color: #ffffff !important;
+  border-radius: 999px !important;
+}
+
+/* ---------------------------------------------------------
+   CATCH THE ACTUAL WHITE PILL
+--------------------------------------------------------- */
+
+/*
+  SearchBar ke active date field mein agar inline
+  white background laga hua hai to ye override karega.
+*/
+
+html.dark [style*="background: white"],
+html.dark [style*="background:white"],
+html.dark [style*="background-color: white"],
+html.dark [style*="background-color:white"],
+html.dark [style*="background: #fff"],
+html.dark [style*="background:#fff"],
+html.dark [style*="background: #ffffff"],
+html.dark [style*="background:#ffffff"] {
+  background: #242424 !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   ACTIVE DATE FIELD — WHITE ROUNDED PILL
+--------------------------------------------------------- */
+
+html.dark .search-bar .active,
+html.dark .search-bar [aria-expanded="true"],
+html.dark .search-bar [data-active="true"] {
+  background: #242424 !important;
+  color: #ffffff !important;
+}
+
+/* Don't make the pink Search button dark */
+
+html.dark .search-bar .search-button,
+html.dark .search-bar button.search-button {
+  background: #ff385c !important;
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   DATE HEADINGS
+--------------------------------------------------------- */
+
+html.dark .calendar-popup h1,
+html.dark .calendar-popup h2,
+html.dark .calendar-popup h3,
+html.dark .calendar-popup h4,
+html.dark .calendar-container h1,
+html.dark .calendar-container h2,
+html.dark .calendar-container h3,
+html.dark .calendar-panel h1,
+html.dark .calendar-panel h2,
+html.dark .calendar-panel h3 {
+  color: #ffffff !important;
+}
+
+/* ---------------------------------------------------------
+   CALENDAR DAYS
+--------------------------------------------------------- */
+
+html.dark .calendar-popup button,
+html.dark .calendar-container button,
+html.dark .calendar-panel button {
+  color: #eeeeee !important;
+}
+
+html.dark .calendar-popup button:hover,
+html.dark .calendar-container button:hover,
+html.dark .calendar-panel button:hover {
+  background: #383838 !important;
+  color: #ffffff !important;
+}
+
+/* Selected day */
+
+html.dark .calendar-popup .selected,
+html.dark .calendar-container .selected,
+html.dark .calendar-panel .selected {
+  background: #ffffff !important;
+  color: #222222 !important;
+}
+
+/* ---------------------------------------------------------
+   FLEXIBLE OPTIONS
+--------------------------------------------------------- */
+
+html.dark .flexible-options button,
+html.dark .calendar-options button,
+html.dark .date-options button {
+  background: #242424 !important;
+  color: #eeeeee !important;
+  border: 1px solid #555555 !important;
+}
+
+html.dark .flexible-options button:hover,
+html.dark .calendar-options button:hover,
+html.dark .date-options button:hover {
+  background: #363636 !important;
+}
+
+/* Exact dates */
+
+html.dark .exact-dates,
+html.dark .exact-dates-button {
+  background: #3a3a3a !important;
+  color: #ffffff !important;
+  border-color: #666666 !important;
+}
+/* =========================================================
+   FINAL FIX — WHEN / ADD DATES WHITE PILL
+========================================================= */
+
+html.dark .search-bar .search-field.active,
+html.dark .search-bar .search-field:focus,
+html.dark .search-bar .search-field:focus-within,
+html.dark .search-bar .search-field[data-active="true"],
+html.dark .search-bar .search-field[aria-expanded="true"] {
+  background: #242424 !important;
+  background-color: #242424 !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* All children inside active When field */
+
+html.dark .search-bar .search-field.active > *,
+html.dark .search-bar .search-field:focus-within > *,
+html.dark .search-bar .search-field[data-active="true"] > * {
+  background: transparent !important;
+}
+
+/* When */
+
+html.dark .search-bar .search-field.active label,
+html.dark .search-bar .search-field.active .search-label {
+  color: #ffffff !important;
+}
+
+/* Add dates */
+
+html.dark .search-bar .search-field.active span,
+html.dark .search-bar .search-field.active p,
+html.dark .search-bar .search-field.active .search-value,
+html.dark .search-bar .search-field.active .search-placeholder {
+  color: #aaaaaa !important;
+}
+
+/* =========================================================
+   EXTRA FORCE FOR ROUNDED WHITE CONTAINER
+========================================================= */
+
+html.dark [class*="search"] [class*="active"] {
+  background-color: #242424 !important;
+}
+
+/* Don't affect pink search button */
+
+html.dark .search-button {
+  background: #ff385c !important;
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   WHEN FIELD BORDER
+========================================================= */
+
+html.dark .search-field.active {
+  border-left: 1px solid #555 !important;
+  border-right: 1px solid #555 !important;
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+/* =========================================================
+   DARK MODE PLACEHOLDER
+========================================================= */
+
+html.dark .search-field.active input,
+html.dark .search-field.active input::placeholder {
+  background: transparent !important;
+  color: #aaaaaa !important;
+}
+
+/* =========================================================
+   NAVBAR BUTTONS — DARK MODE FIX
+========================================================= */
+
+/* LIGHT MODE */
+.profile-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 50% !important;
+
+  background: #f1efff !important;
+  color: #5b50b5 !important;
+
+  font-size: 17px !important;
+  font-weight: 600 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease !important;
+}
+
+.profile-button:hover {
+  background: #e9e6fb !important;
+  transform: scale(1.03);
+}
+
+
+/* HAMBURGER */
+.menu-button {
+  width: 48px !important;
+  height: 48px !important;
+  min-width: 48px !important;
+
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 50% !important;
+
+  background: #f7f7f7 !important;
+  color: #222222 !important;
+
+  font-size: 20px !important;
+  line-height: 1 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+
+  transition:
+    background 180ms ease,
+    border-color 180ms ease,
+    transform 180ms ease !important;
+}
+
+.menu-button:hover {
+  background: #eeeeee !important;
+  transform: scale(1.03);
+}
+
+
+/* =========================================================
+   DARK MODE
+========================================================= */
+
+html.dark .navbar,
+body.dark .navbar,
+html[data-theme="dark"] .navbar,
+body[data-theme="dark"] .navbar {
+  background: #111111 !important;
+  color: #f5f5f5 !important;
+}
+
+
+/* PROFILE BUTTON */
+html.dark .profile-button,
+body.dark .profile-button,
+html[data-theme="dark"] .profile-button,
+body[data-theme="dark"] .profile-button {
+  background: #252525 !important;
+  color: #e8e2ff !important;
+
+  border: 1px solid #444444 !important;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.dark .profile-button:hover,
+body.dark .profile-button:hover,
+html[data-theme="dark"] .profile-button:hover,
+body[data-theme="dark"] .profile-button:hover {
+  background: #303030 !important;
+  border-color: #555555 !important;
+}
+
+
+/* HAMBURGER BUTTON */
+html.dark .menu-button,
+body.dark .menu-button,
+html[data-theme="dark"] .menu-button,
+body[data-theme="dark"] .menu-button {
+  background: #252525 !important;
+  color: #f5f5f5 !important;
+
+  border: 1px solid #444444 !important;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.dark .menu-button:hover,
+body.dark .menu-button:hover,
+html[data-theme="dark"] .menu-button:hover,
+body[data-theme="dark"] .menu-button:hover {
+  background: #303030 !important;
+  border-color: #555555 !important;
+}
+
+
+/* =========================================================
+   NAVBAR RIGHT
+========================================================= */
+
+html.dark .navbar-right,
+body.dark .navbar-right,
+html[data-theme="dark"] .navbar-right,
+body[data-theme="dark"] .navbar-right {
+  color: #f5f5f5 !important;
+}
+
+
+/* HOST LINK */
+html.dark .host-link,
+body.dark .host-link,
+html[data-theme="dark"] .host-link,
+body[data-theme="dark"] .host-link {
+  color: #f5f5f5 !important;
+}
+
+html.dark .host-link:hover,
+body.dark .host-link:hover,
+html[data-theme="dark"] .host-link:hover,
+body[data-theme="dark"] .host-link:hover {
+  background: #252525 !important;
+}
+
+
+/* GLOBE BUTTON */
+html.dark .globe-button,
+body.dark .globe-button,
+html[data-theme="dark"] .globe-button,
+body[data-theme="dark"] .globe-button {
+  color: #f5f5f5 !important;
+  background: transparent !important;
+}
+
+html.dark .globe-button:hover,
+body.dark .globe-button:hover,
+html[data-theme="dark"] .globe-button:hover,
+body[data-theme="dark"] .globe-button:hover {
+  background: #252525 !important;
+}
+
+
+/* =========================================================
+   DARK PROFILE MENU
+========================================================= */
+
+html.dark .profile-menu,
+body.dark .profile-menu,
+html[data-theme="dark"] .profile-menu,
+body[data-theme="dark"] .profile-menu {
+  background: #181818 !important;
+  color: #f5f5f5 !important;
+
+  border: 1px solid #333333 !important;
+
+  box-shadow:
+    0 15px 45px rgba(0, 0, 0, 0.55) !important;
+}
+
+html.dark .profile-menu .profile-menu-item,
+body.dark .profile-menu .profile-menu-item,
+html[data-theme="dark"] .profile-menu .profile-menu-item,
+body[data-theme="dark"] .profile-menu .profile-menu-item {
+  color: #f5f5f5 !important;
+  background: transparent !important;
+}
+
+html.dark .profile-menu .profile-menu-item:hover,
+body.dark .profile-menu .profile-menu-item:hover,
+html[data-theme="dark"] .profile-menu .profile-menu-item:hover,
+body[data-theme="dark"] .profile-menu .profile-menu-item:hover {
+  background: #292929 !important;
+}
+
+
+/* MENU ICONS */
+html.dark .profile-menu .menu-item-icon,
+body.dark .profile-menu .menu-item-icon,
+html[data-theme="dark"] .profile-menu .menu-item-icon,
+body[data-theme="dark"] .profile-menu .menu-item-icon {
+  color: #f5f5f5 !important;
+}
+
+
+/* DIVIDER */
+html.dark .profile-menu .menu-divider,
+body.dark .profile-menu .menu-divider,
+html[data-theme="dark"] .profile-menu .menu-divider,
+body[data-theme="dark"] .profile-menu .menu-divider {
+  background: #383838 !important;
+}
+
+
+/* HOST CARD */
+html.dark .profile-menu .host-menu-card,
+body.dark .profile-menu .host-menu-card,
+html[data-theme="dark"] .profile-menu .host-menu-card,
+body[data-theme="dark"] .profile-menu .host-menu-card {
+  background: transparent !important;
+  color: #f5f5f5 !important;
+}
+
+html.dark .profile-menu .host-menu-card:hover,
+body.dark .profile-menu .host-menu-card:hover,
+html[data-theme="dark"] .profile-menu .host-menu-card:hover,
+body[data-theme="dark"] .profile-menu .host-menu-card:hover {
+  background: #292929 !important;
+}
+
+html.dark .host-menu-text strong,
+body.dark .host-menu-text strong,
+html[data-theme="dark"] .host-menu-text strong,
+body[data-theme="dark"] .host-menu-text strong {
+  color: #ffffff !important;
+}
+
+html.dark .host-menu-text span,
+body.dark .host-menu-text span,
+html[data-theme="dark"] .host-menu-text span,
+body[data-theme="dark"] .host-menu-text span {
+  color: #a8a8a8 !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 500px) {
+  .profile-button,
+  .menu-button {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+  }
+}
