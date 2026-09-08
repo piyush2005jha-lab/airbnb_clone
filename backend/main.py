@@ -32,6 +32,24 @@ app = FastAPI(
     description="Backend API for Airbnb Clone",
     version="1.0.0",
 )
+# =========================================
+# VERCEL SERVICES PREFIX
+# =========================================
+
+@app.middleware("http")
+async def strip_vercel_service_prefix(request, call_next):
+    path = request.scope.get("path", "")
+
+    if path.startswith("/svc/api"):
+        new_path = path[len("/svc/api"):]
+
+        if not new_path:
+            new_path = "/"
+
+        request.scope["path"] = new_path
+
+    response = await call_next(request)
+    return response
 
 
 # ==========================================
