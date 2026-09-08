@@ -4,6 +4,11 @@ const API_URL =
     ? "/svc/api"
     : "http://127.0.0.1:8000");
 
+
+// =========================================================
+// TYPES
+// =========================================================
+
 export interface User {
   id: number;
   name: string;
@@ -43,32 +48,70 @@ export interface Listing {
   amenities: ListingAmenity[];
 }
 
+
+// =========================================================
+// GET ALL LISTINGS
+// =========================================================
+
 export async function getListings(
-  params?: { location?: string }
+  params?: {
+    location?: string;
+  }
 ): Promise<Listing[]> {
-  const url = new URL(
-    `${API_URL}/listings/`,
-    typeof window !== "undefined"
-      ? window.location.origin
-      : "http://localhost"
-  );
+
+  const url = `${API_URL}/listings/`;
+
+  const searchParams = new URLSearchParams();
 
   if (params?.location) {
-    url.searchParams.set("location", params.location);
+    searchParams.set(
+      "location",
+      params.location
+    );
   }
 
-  const response = await fetch(url.toString(), {
-    cache: "no-store",
-  });
+  const finalUrl =
+    searchParams.toString()
+      ? `${url}?${searchParams.toString()}`
+      : url;
+
+  console.log(
+    "Fetching listings from:",
+    finalUrl
+  );
+
+  const response = await fetch(
+    finalUrl,
+    {
+      cache: "no-store",
+    }
+  );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch listings: ${response.status}`);
+    throw new Error(
+      `Failed to fetch listings: ${response.status}`
+    );
   }
 
-  return response.json();
+  const data = await response.json();
+
+  console.log(
+    "Listings received:",
+    data
+  );
+
+  return data;
 }
 
-export async function getListing(id: number): Promise<Listing> {
+
+// =========================================================
+// GET SINGLE LISTING
+// =========================================================
+
+export async function getListing(
+  id: number
+): Promise<Listing> {
+
   const response = await fetch(
     `${API_URL}/listings/${id}`,
     {
@@ -77,7 +120,9 @@ export async function getListing(id: number): Promise<Listing> {
   );
 
   if (!response.ok) {
-    throw new Error(`Failed to fetch listing: ${response.status}`);
+    throw new Error(
+      `Failed to fetch listing: ${response.status}`
+    );
   }
 
   return response.json();
